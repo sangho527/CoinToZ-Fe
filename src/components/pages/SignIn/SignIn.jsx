@@ -126,10 +126,10 @@ export default function SignIn({ location }) {
               <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver">
                 <img style={{ display: 'inline-block', width: "60px", height: "30px", marginLeft: '5px', marginRight: '5px', verticalAlign: '-1px' }} alt="naver" src={NaverBut} />
               </Link>
-              <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/kakao">
+              <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao">
                 <img style={{ display: 'inline-block', marginLeft: '5px', marginRight: '5px', verticalAlign: '-1px' }} alt="kakao" src={KakaoBut} />
               </Link>
-              <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/google">
+              <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google">
                 <img style={{ display: 'inline-block', height: '30px', marginLeft: '5px', marginRight: '5px', verticalAlign: '-1px' }} alt="google" src={GoogleBut} />
               </Link>
             </p>
