@@ -55,7 +55,7 @@ const Mypage = () => {
                       <div>{email}</div>
                     </li>
                     <li>
-                      <label htmlFor="nick_name">닉네임<span className={styles.Required}>필수</span></label>
+                      <label htmlFor="nick_name">이름<span className={styles.Required}>필수</span></label>
 
                       <div>{userName}</div>                  
                     </li>
