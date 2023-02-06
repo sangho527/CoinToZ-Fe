@@ -258,7 +258,9 @@ html::-webkit-scrollbar-thumb {
 
 body {
   padding-bottom: 10%;
-  /* background-color: #f5f6f7; */
+  height: 100vh;
+  background-color: #f5f6f7;
+  overflow: hidden;
 }
 
 audio,

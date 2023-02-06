@@ -10,6 +10,7 @@ import Mypage from './components/pages/Mypage/Mypage';
 import PasswordValidation from './components/pages/Validation/PasswordValidation';
 import UserModifyForm from './components/pages/UserInfoModify/UserModifyForm';
 import PasswordModiftForm from './components/pages/UserInfoModify/PasswordModifyForm';
+import Dashboard from './components/pages/Diary/Dashboard';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                     <Route path='/mypage/password/validation' element={<PasswordValidation/>}/>
                     <Route path='/mypage/info/modify' element={<UserModifyForm/>}/>
                     <Route path='/mypage/password/modify' element={<PasswordModiftForm/>} />
+                    <Route path='/diary' element={<Dashboard/>} />
                 </Routes>
             </RecoilRoot>
         </>
