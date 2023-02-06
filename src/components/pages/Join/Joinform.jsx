@@ -54,17 +54,18 @@ const Joinform = () => {
 
   // 인증번호 발송 성공하면 팝업창 열리게 설정 
   const emailAuth = async () => {
-    await axios.get('/api/v1/users/test') // url 수정 필요
-    .then(function(response){
-      console.log(response.data);
-      alert("인증번호가 발송되었습니다.");
-      ModalHandler();
-    })
-    .catch(function(error){
-      console.log(error);
-      alert("이메일을 다시 확인해주세요.");
-    })
-    
+    await axios.get('api/v1/emails/send', {
+      params: { email }
+    }) // url 수정 필요
+        .then(function(response){
+          console.log(response.data);
+          alert("인증번호가 발송되었습니다.");
+          ModalHandler();
+        })
+        .catch(function(error){
+          console.log(error);
+          alert("이메일을 다시 확인해주세요.");
+        })
   }
 
   const handleAuth = () => {
@@ -176,7 +177,7 @@ const Joinform = () => {
                     type="email"
                     id="email"
                     name="email"
-                    label="이메일 주소"
+                    label="이메일 주소, 현재는 @naver.com만 가능합니다."
                     onChange={(e) => {
                       getEmail(e.target.value);
                     }}

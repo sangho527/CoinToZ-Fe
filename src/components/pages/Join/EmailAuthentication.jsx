@@ -17,7 +17,9 @@ function EmailAuthentication(props) {
   // 인증번호 일치 한지 확인 함수
   const Authenticate = async () => {
     console.log(code); // 코드 콘솔에 나오게
-    axios.get('/api/v1/users/test') // 수정해야 할 부분
+    axios.get('/api/v1/emails/auth', {
+      params: {code}
+    }) // 수정해야 할 부분
       .then(function (response) {
         props.onChange(); // 이메일 체크 true로 바꾸는 함수
         alert("인증되었습니다.");
