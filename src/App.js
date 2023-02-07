@@ -26,6 +26,8 @@ import Payment from './components/pages/PaymentPage/Payment';
 import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
 import UpbitMainPage from './components/pages/UpbitMainPage/UpbitMainPage';
+import TitleMenu from './components/common/TitleMenu/TitleMenu';
+
 function App() {
 
     return (
