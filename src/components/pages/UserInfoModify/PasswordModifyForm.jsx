@@ -3,12 +3,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import FormHelperTexts from '@mui/material/FormHelperText';
-import Api from "../util/customApi";
+import Api from "../../../functions/customApi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { removeCookie } from "../util/cookie";
+import { removeCookie } from "../../../functions/cookie";
 import { useSetRecoilState } from "recoil";
-import { userState } from "../util/GlobalState";
+import { userState } from "../../../functions/GlobalState";
 
 const PasswordModiftForm = () => {
 

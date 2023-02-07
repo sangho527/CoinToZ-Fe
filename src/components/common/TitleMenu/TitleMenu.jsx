@@ -3,11 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { userState } from './GlobalState';
+import { userState } from '../../../functions/GlobalState';
 import AccountPopover from './profileSelect';
 
 
-const CustomNav = () => {
+const TitleMenu = () => {
   const navigate = useNavigate();
 
   const user = useRecoilValue(userState);
@@ -41,4 +41,4 @@ const CustomNav = () => {
   );
 };
 
-export default CustomNav;
+export default TitleMenu;
