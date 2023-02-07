@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button } from 'react-bootstrap';
-import Api from './customApi';
+import Api from '../../../functions/customApi';
 
 
 export default function Test() {

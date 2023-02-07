@@ -1,11 +1,11 @@
 import { Box, TextField, Button } from "@mui/material";
 import React, { useState } from "react";
 import styles from "./UserModifyForm.module.css";
-import Api from "../util/customApi";
+import Api from "../../../functions/customApi";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from 'recoil';
-import { removeCookie } from "../util/cookie";
-import { userState } from "../util/GlobalState";
+import { removeCookie } from "../../../functions/cookie";
+import { userState } from "../../../functions/GlobalState";
 
 const UserModifyForm = (): JSX.Element => {
   const navigate = useNavigate();

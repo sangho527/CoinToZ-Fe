@@ -4,7 +4,6 @@ import Joinform from './components/pages/Join/Joinform';
 import SignIn from './components/pages/SignIn/SignIn';
 import Main from "./components/pages/Mainpage/Mainpage";
 import Test from './components/pages/util/Test';
-import CustomNav from './components/pages/util/CustomNav';
 import {RecoilRoot} from 'recoil';
 import Mypage from './components/pages/Mypage/Mypage';
 import PasswordValidation from './components/pages/Validation/PasswordValidation';
@@ -12,24 +11,25 @@ import UserModifyForm from './components/pages/UserInfoModify/UserModifyForm';
 import PasswordModiftForm from './components/pages/UserInfoModify/PasswordModifyForm';
 import UpbitMainPage from './components/pages/UpbitMainPage/UpbitMainPage';
 import Dashboard from './components/pages/Diary/Dashboard';
-import NavRestApi from './NavRestApi';
+import NavRestApi from './components/common/ApiNav/NavRestApi';
 import MarketCode from './QuotationAPI/RESTAPI-example/MarketCode';
 import DayCandleData from './QuotationAPI/RESTAPI-example/DayCandleData';
 import MinuteCandleData from './QuotationAPI/RESTAPI-example/MinuteCandleData';
 import WeekMonthCandleData from './QuotationAPI/RESTAPI-example/WeekMonthCandleData';
 import TradeHistoryData from './QuotationAPI/RESTAPI-example/TradeHistoryData';
-import NavWebsocketApi from './NavWebsocketApi';
+import NavWebsocketApi from './components/common/ApiNav/NavWebsocketApi';
 import OrderBook from 'upbit-api/container/OrderBook';
 import RealTimePrice from './QuotationAPI/WEBSOCKET-example/RealTimePrice';
 import TradeHistory from './QuotationAPI/WEBSOCKET-example/TradeHistory';
 import TotalExample from './QuotationAPI/TOTAL-example/TotalExample';
+import TitleMenu from './components/common/TitleMenu/TitleMenu';
 
 function App() {
 
     return (
         <>
             <RecoilRoot>
-                <CustomNav/>
+                <TitleMenu/>
                 <Routes>
                     <Route path='/' element={<Main/>}/>
                     <Route path='/join' element={<Joinform/>}/>

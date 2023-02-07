@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Title from './Title';
 import { Box } from '@mui/material';
-import Api from '../util/customApi';
+import Api from '../../../functions/customApi';
 import UpdateModal from './UpdateModal';
 import { GridColDef, GridActionsCellItem, GridToolbarContainer, GridToolbarExport, DataGrid } from '@mui/x-data-grid';
 import AutoFixHighOutlinedIcon from '@mui/icons-material/AutoFixHighOutlined';
