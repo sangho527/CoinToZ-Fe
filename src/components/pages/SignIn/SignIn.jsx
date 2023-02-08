@@ -54,7 +54,7 @@ export default function SignIn({ location }) {
   const getInfo = async () => {
     await Api.get("/api/v1/users/info")
     .then(function (response) {
-      console.log(response.data);
+      console.log(response.data.result);
       localStorage.setItem("userName",response.data.result.userName);
       localStorage.setItem("imageUrl",response.data.result.imageUrl);
       localStorage.setItem("createAt",response.data.result.createAt);
