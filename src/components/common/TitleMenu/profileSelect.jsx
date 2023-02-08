@@ -4,9 +4,9 @@ import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
-import { userState } from './GlobalState';
-import { removeCookie } from './cookie';
-import Api from './customApi';
+import { userState } from '../../../functions/GlobalState';
+import { removeCookie } from '../../../functions/cookie';
+import Api from '../../../functions/customApi';
 
 const MENU_OPTIONS = [
   {

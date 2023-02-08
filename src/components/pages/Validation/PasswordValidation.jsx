@@ -2,7 +2,7 @@ import styles from "../Mypage/Mypage.module.css";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Api from "../util/customApi";
+import Api from "../../../functions/customApi";
 import { useNavigate } from "react-router-dom";
 
 const PasswordValidation = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button, Form } from 'react-bootstrap';
-import Api from '../util/customApi';
+import Api from '../../../functions/customApi';
 
 function UpdateModal(props) {
 

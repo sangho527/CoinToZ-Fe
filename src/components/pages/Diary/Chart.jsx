@@ -10,13 +10,13 @@ function createData(time, amount) {
 
 const data = [
   createData('00:00', 0),
-  createData('03:00', 300),
-  createData('06:00', 600),
-  createData('09:00', 800),
-  createData('12:00', 1500),
-  createData('15:00', 2000),
-  createData('18:00', 2400),
-  createData('21:00', 2400),
+  createData('03:00', 12),
+  createData('06:00', -21),
+  createData('09:00', -54),
+  createData('12:00', -55),
+  createData('15:00', -34),
+  createData('18:00', -6),
+  createData('21:00', 15),
   createData('24:00', undefined),
 ];
 
@@ -25,7 +25,7 @@ export default function Chart() {
 
   return (
     <React.Fragment>
-      <Title>수익률</Title>
+      <Title>누적 수익률</Title>
       <ResponsiveContainer>
         <LineChart
           data={data}
@@ -54,7 +54,7 @@ export default function Chart() {
                 ...theme.typography.body1,
               }}
             >
-              Sales ($)
+              수익률 (%)
             </Label>
           </YAxis>
           <Line
