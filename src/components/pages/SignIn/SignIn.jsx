@@ -15,11 +15,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import NaverBut from '../../../assets/signIn/btnG_축약형.png'
 import GoogleBut from '../../../assets/signIn/btn_google_signin_dark_focus_web@2x.png'
 import KakaoBut from '../../../assets/signIn/kakao_login_small.png'
-import { setCookie } from "../util/cookie";
+import { setCookie } from "../../../functions/cookie";
 import { useSetRecoilState } from 'recoil';
-import { userState } from '../util/GlobalState';
+import { userState } from '../../../functions/GlobalState';
 import queryString from 'query-string';
-import Api from "../util/customApi";
+import Api from "../../../functions/customApi";
 
 const theme = createTheme();
 
@@ -54,6 +54,7 @@ export default function SignIn({ location }) {
   const getInfo = async () => {
     await Api.get("/api/v1/users/info")
     .then(function (response) {
+      console.log(response.data.result);
       localStorage.setItem("userName",response.data.result.userName);
       localStorage.setItem("imageUrl",response.data.result.imageUrl);
       localStorage.setItem("createAt",response.data.result.createAt);
@@ -123,13 +124,16 @@ export default function SignIn({ location }) {
           <br></br>
           <Grid>
             <p className="lead fw-normal mb-0 me-3">Sign in with
-              <Link href="http://localhost:8080/oauth2/authorization/naver">
+               <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/naver">
+              {/*<Link href="http://localhost:8080/oauth2/authorization/naver">*/}
                 <img style={{ display: 'inline-block', width: "60px", height: "30px", marginLeft: '5px', marginRight: '5px', verticalAlign: '-1px' }} alt="naver" src={NaverBut} />
               </Link>
-              <Link href="http://localhost:8080/oauth2/authorization/kakao">
+               <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao">
+              {/*<Link href="http://localhost:8080/oauth2/authorization/kakao">*/}
                 <img style={{ display: 'inline-block', marginLeft: '5px', marginRight: '5px', verticalAlign: '-1px' }} alt="kakao" src={KakaoBut} />
               </Link>
-              <Link href="http://localhost:8080/oauth2/authorization/google">
+               <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/google">
+              {/*<Link href="http://localhost:8080/oauth2/authorization/google">*/}
                 <img style={{ display: 'inline-block', height: '30px', marginLeft: '5px', marginRight: '5px', verticalAlign: '-1px' }} alt="google" src={GoogleBut} />
               </Link>
             </p>

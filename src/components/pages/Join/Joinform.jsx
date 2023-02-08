@@ -17,6 +17,7 @@ import {
 } from '@mui/material/';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import styled from 'styled-components';
+import EmailAuthentication from './EmailAuthentication';
 
 // mui의 css 우선순위가 높기때문에 important를 설정 - 실무하다 보면 종종 발생 우선순위 문제
 const FormHelperTexts = styled(FormHelperText)`
@@ -33,12 +34,49 @@ const Boxs = styled(Box)`
 const Joinform = () => {
   const theme = createTheme();
   const [checked, setChecked] = useState(false);
+  const [emailChecked, setEmailChecked] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [passwordState, setPasswordState] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [nameError, setNameError] = useState('');
   const [registerError, setRegisterError] = useState('');
+  const [email,setEmail] = useState('');
   const navigate = useNavigate();
+  const [modalShow, setModalShow] = useState(false);
+
+  function ModalHandler() {
+    setModalShow(true)
+  }
+
+  function getEmail(value) {
+    setEmail(value);
+  }
+
+  // 인증번호 발송 성공하면 팝업창 열리게 설정 
+  const emailAuth = async () => {
+    await axios.get('api/v1/emails/send', {
+      params: { email }
+    }) // url 수정 필요
+        .then(function(response){
+          console.log(response.data);
+          alert("인증번호가 발송되었습니다.");
+          ModalHandler();
+        })
+        .catch(function(error){
+          console.log(error);
+          alert("이메일을 다시 확인해주세요.");
+        })
+  }
+
+  const handleAuth = () => {
+    const emailRegex = /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (!emailRegex.test(email)) setEmailError('올바른 이메일 형식이 아닙니다.');
+    else setEmailError('');
+
+    if (emailRegex.test(email)) {
+      emailAuth();
+    }
+  }
 
   const handleAgree = (event) => {
     setChecked(event.target.checked);
@@ -96,16 +134,21 @@ const Joinform = () => {
     // 회원가입 동의 체크
     if (!checked) alert('회원가입 약관에 동의해주세요.');
 
+    if (!emailChecked) alert('이메일 인증을 해주세요');
+
     if (
       emailRegex.test(email) &&
       passwordRegex.test(password) &&
       password === rePassword &&
       nameRegex.test(userName) &&
+      emailChecked &&
       checked
     ) {
       onhandlePost(joinData);
     }
   };
+
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -134,11 +177,28 @@ const Joinform = () => {
                     type="email"
                     id="email"
                     name="email"
-                    label="이메일 주소"
+                    label="이메일 주소, 현재는 @naver.com만 가능합니다."
+                    onChange={(e) => {
+                      getEmail(e.target.value);
+                    }}
                     error={emailError !== '' || false}
                   />
+                  {emailChecked === true ? <FormHelperTexts>인증된 이메일</FormHelperTexts> : <></>}
+                  <FormHelperTexts>{emailError}</FormHelperTexts>
+                  <Button
+                  onClick={handleAuth}
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  size="large"
+                  >인증</Button>
+                  <EmailAuthentication
+                      email={email}
+                      show={modalShow}
+                      onChange = {() =>setEmailChecked(true)}
+                      onHide={() => setModalShow(false)}
+                    />
                 </Grid>
-                <FormHelperTexts>{emailError}</FormHelperTexts>
                 <Grid item xs={12}>
                   <TextField
                     required

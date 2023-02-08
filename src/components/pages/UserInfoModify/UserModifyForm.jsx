@@ -1,16 +1,19 @@
 import { Box, TextField, Button } from "@mui/material";
 import React, { useState } from "react";
-import styles from "../Mypage/Mypage.module.css";
-import Api from "../util/customApi";
+import styles from "./UserModifyForm.module.css";
+import Api from "../../../functions/customApi";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from 'recoil';
-import { removeCookie } from "../util/cookie";
-import { userState } from "../util/GlobalState";
+import { removeCookie } from "../../../functions/cookie";
+import { userState } from "../../../functions/GlobalState";
 
 const UserModifyForm = (): JSX.Element => {
   const navigate = useNavigate();
   const setUser = useSetRecoilState(userState);
-  const [userName,setUserName] = useState(localStorage.getItem('userName'));
+  const [userName, setUserName] = useState(localStorage.getItem('userName'));
+  const [imageFile, setImageFile] = useState(localStorage.getItem('imageUrl'));
+  const [fileList,setFileList] = useState([]); // 업로드한 파일들을 저장하는 배열
+  const [removeClick,setRemoveClick] = useState(0);
 
   const onChangeUserName = (e) => {
     setUserName(e.target.value);
@@ -34,17 +37,43 @@ const UserModifyForm = (): JSX.Element => {
         alert("로그아웃 실패!");
       });
   };
-  const fileList: File[] = []; // 업로드한 파일들을 저장하는 배열
+  
+
+  const changeView = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileReader = new FileReader();
+
+    if (fileList) {
+      fileReader.readAsDataURL(e.target.files[0]);
+    }
+    fileReader.onload = () => {
+      setImageFile(fileReader.result);
+    };
+  }
 
   const onSaveFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+
     const uploadFiles = Array.prototype.slice.call(e.target.files); // 파일선택창에서 선택한 파일들
+
+    if (fileList) {
+      fileList.shift();
+    }
 
     uploadFiles.forEach((uploadFile) => {
       fileList.push(uploadFile);
+      setRemoveClick(0);
+      console.log(fileList);
     });
   };
 
-  const onFileUpload = async () => {
+  const onDeleteImage = () => {
+    setImageFile('https://ohy1023.s3.ap-northeast-2.amazonaws.com/basic.png');
+    setFileList([]);
+    setRemoveClick(1);
+    console.log(fileList);
+  }
+
+  const onFileUpload = () => {
+    console.log(fileList);
     const formData = new FormData();
 
     fileList.forEach((file) => {
@@ -53,15 +82,16 @@ const UserModifyForm = (): JSX.Element => {
     });
 
     formData.append('userName', userName);
+    formData.append('removeClick',removeClick);
 
-    await Api.post('/api/v1/users/modify', formData)
-    .then(function(response){
-      alert(" 회원 정보가 수정되었습니다.\n 다시 로그인 해주세요.");
-      logoutUser();
-    })
-    .catch(function(error){
-      alert("실패");
-    });
+    Api.post('/api/v1/users/modify', formData)
+      .then(function (response) {
+        alert(" 회원 정보가 수정되었습니다.\n 다시 로그인 해주세요.");
+        logoutUser();
+      })
+      .catch(function (error) {
+        alert("실패");
+      });
   };
 
   return (
@@ -96,17 +126,30 @@ const UserModifyForm = (): JSX.Element => {
                     onChange={onChangeUserName}
                     autoFocus
                   />
-                  <br /><br />
-                  <p>프로필 변경</p>
-                  <div>
-                    <input type="file" onChange={onSaveFiles} />
+                  <br/><br/>
+                  <h5 className={styles.glmt0}>프로필 변경</h5>
+                  <div className={styles.Avatar}>
+                    <img alt="" src={imageFile} />
                   </div>
-
+                  <br />
+                  <div className={styles.gltextgray500}>허용되는 최대 파일 크기는 10MB입니다.</div>
+                  <div className={[styles.gldisplayflex, styles.glalignitemscenter, styles.glmy3].join(" ")}>
+                    <label className={styles.imageSaveButton} type="button" htmlFor="user_avatar-trigger">
+                      <span className={styles.glbuttontext}>이미지 선택</span>
+                    </label>
+                    <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      changeView(e)
+                      onSaveFiles(e)
+                    }} className={styles.hidden} accept="image/*" type="file" id="user_avatar-trigger" />
+                    <label type="button" className={styles.imageDeleteButton} onClick={onDeleteImage}>
+                      <span className={styles.glbuttontext}>이미지 삭제</span>
+                    </label>
+                  </div>
                   <Button
+                    onClick={onFileUpload}
                     type="submit"
                     fullWidth
                     variant="contained"
-                    onClick={onFileUpload}
                     sx={{ mt: 3, mb: 2 }}
                   >
                     회원정보 수정

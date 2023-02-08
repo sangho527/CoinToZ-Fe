@@ -3,12 +3,12 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import FormHelperTexts from '@mui/material/FormHelperText';
-import Api from "../util/customApi";
+import Api from "../../../functions/customApi";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { removeCookie } from "../util/cookie";
+import { removeCookie } from "../../../functions/cookie";
 import { useSetRecoilState } from "recoil";
-import { userState } from "../util/GlobalState";
+import { userState } from "../../../functions/GlobalState";
 
 const PasswordModiftForm = () => {
 
@@ -70,9 +70,6 @@ const PasswordModiftForm = () => {
 
     // 비밀번호 유효성 체크
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-    if (!passwordRegex.test(password))
-      setPasswordState('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!');
-    else setPasswordState('');
 
     if (!passwordRegex.test(newPassword))
       setNewPasswordState('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!');
@@ -85,7 +82,6 @@ const PasswordModiftForm = () => {
 
 
     if (
-      passwordRegex.test(password) &&
       passwordRegex.test(newPassword) &&
       passwordRegex.test(reNewPassword) &&
       newPassword === reNewPassword
