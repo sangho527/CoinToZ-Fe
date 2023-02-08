@@ -55,6 +55,20 @@ export default function Orders() {
     setUpdateModalShow(true)
   }
 
+  function startDateFormat(date) {
+    let dateFormat = date.getFullYear() +
+      '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
+      '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) + 'T00:00:00'
+    return dateFormat;
+  }
+
+  function endDateFormat(date) {
+    let dateFormat = date.getFullYear() +
+      '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
+      '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) + 'T23:59:59'
+    return dateFormat;
+  }
+
   const onButtonClick = (e, row) => {
     e.stopPropagation();
     setClickedRow(row)
@@ -67,13 +81,8 @@ export default function Orders() {
   const [startDate, setStartDate] = React.useState(new Date());
   const [endDate, setEndDate] = React.useState(new Date());
 
-  const find = async () => {
-    console.log(startDate);
-    console.log(endDate);
-  }
-
   const getCoinInfo = async () => {
-    await Api.get("/api/v1/diary/list2")
+    await Api.get("/api/v1/diary/list")
       .then(function (response) {
         setDiary(response.data)
       })
@@ -86,6 +95,21 @@ export default function Orders() {
   React.useEffect(() => {
     getCoinInfo();
   }, [changeComment]);
+
+  const searchByDate = async () => {
+    await Api.get(`api/v1/diary/search/`,{
+      params:{
+        startDate:startDateFormat(startDate),
+        endDate:endDateFormat(endDate)
+      }
+    }).then(function(response) {
+      setDiary(response.data.result)
+      alert("검색 완료");
+    })
+  .catch(function(error){
+    console.log(error);
+    alert('검색 실패');
+  })}
 
 
   return (
@@ -103,7 +127,7 @@ export default function Orders() {
         <Table>
           <tbody>
             <tr>
-              <td style={{width: '75px'}}>
+              <td style={{ width: '75px' }}>
                 <SDatePicker
                   locale={ko}
                   dateFormat="yyyy년 MM월 dd일"
@@ -116,10 +140,10 @@ export default function Orders() {
                   form="external-form"
                 />
               </td>
-              <td style={{width: '30px', fontSize: '23px'}}>
+              <td style={{ width: '30px', fontSize: '23px' }}>
                 ~
               </td>
-              <td style={{width: '75px'}}>
+              <td style={{ width: '75px' }}>
                 <SDatePicker
                   locale={ko}
                   dateFormat="yyyy년 MM월 dd일"
@@ -134,7 +158,7 @@ export default function Orders() {
               </td>
               <td>
                 <form id="external-form">
-                  <Button type="submit" onClick={find} >
+                  <Button type="button" onClick={searchByDate} >
                     검색
                   </Button>
                 </form>

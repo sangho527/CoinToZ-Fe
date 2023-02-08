@@ -30,7 +30,6 @@ export default function Deposits() {
       })
       .catch(function (err) {
         console.log(err);
-        alert("코인 개수 조회 실패");
       })
   };
 
