@@ -1,6 +1,6 @@
 import styles from "./Mypage.module.css";
 import { useState } from "react";
-import DeleteUser from "./DelteUser";
+import DeleteUser from "./DeleteUser";
 
 const Mypage = () => {
 

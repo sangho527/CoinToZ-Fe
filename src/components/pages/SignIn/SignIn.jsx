@@ -15,11 +15,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import NaverBut from '../../../assets/signIn/btnG_축약형.png'
 import GoogleBut from '../../../assets/signIn/btn_google_signin_dark_focus_web@2x.png'
 import KakaoBut from '../../../assets/signIn/kakao_login_small.png'
-import { setCookie } from "../util/cookie";
+import { setCookie } from "../../../functions/cookie";
 import { useSetRecoilState } from 'recoil';
-import { userState } from '../util/GlobalState';
+import { userState } from '../../../functions/GlobalState';
 import queryString from 'query-string';
-import Api from "../util/customApi";
+import Api from "../../../functions/customApi";
 
 const theme = createTheme();
 
@@ -54,6 +54,7 @@ export default function SignIn({ location }) {
   const getInfo = async () => {
     await Api.get("/api/v1/users/info")
     .then(function (response) {
+      console.log(response.data.result);
       localStorage.setItem("userName",response.data.result.userName);
       localStorage.setItem("imageUrl",response.data.result.imageUrl);
       localStorage.setItem("createAt",response.data.result.createAt);

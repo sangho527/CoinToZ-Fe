@@ -3,11 +3,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { userState } from './GlobalState';
+import { userState } from '../../../functions/GlobalState';
 import AccountPopover from './profileSelect';
 
 
-const CustomNav = () => {
+const TitleMenu = () => {
   const navigate = useNavigate();
 
   const user = useRecoilValue(userState);
@@ -21,7 +21,7 @@ const CustomNav = () => {
           </Nav.Link>
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link onClick={() => { navigate('/test') }}>거래소</Nav.Link>
+          <Nav.Link onClick={() => { navigate('/upbitMainPage') }}>거래소</Nav.Link>
           <Nav.Link onClick={() => { navigate('/diary') }}>매매 일지</Nav.Link>
           <Nav.Link onClick={() => { navigate('/test') }}>커뮤니티</Nav.Link>
         </Nav>
@@ -41,4 +41,4 @@ const CustomNav = () => {
   );
 };
 
-export default CustomNav;
+export default TitleMenu;

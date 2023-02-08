@@ -1,11 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal,Button} from 'react-bootstrap';
-import Api from '../util/customApi'
+import Api from '../../../functions/customApi'
 import { useNavigate } from 'react-router-dom';
-import { removeCookie } from '../util/cookie';
+import { removeCookie } from '../../../functions/cookie';
 import { useSetRecoilState } from 'recoil';
-import { userState } from '../util/GlobalState';
+import { userState } from '../../../functions/GlobalState';
 
 function DeleteUser(props) {
 
