@@ -14,7 +14,7 @@ export default function Payment(){
     const order = async () => {
 
         axios
-            .get('http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/getMarket', {
+            .get('/getMarket', {
                 // side: side,
                 // ordType: ordType,
                 // market: market,
