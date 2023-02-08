@@ -70,9 +70,6 @@ const PasswordModiftForm = () => {
 
     // 비밀번호 유효성 체크
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-    if (!passwordRegex.test(password))
-      setPasswordState('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!');
-    else setPasswordState('');
 
     if (!passwordRegex.test(newPassword))
       setNewPasswordState('숫자+영문자+특수문자 조합으로 8자리 이상 입력해주세요!');
@@ -85,7 +82,6 @@ const PasswordModiftForm = () => {
 
 
     if (
-      passwordRegex.test(password) &&
       passwordRegex.test(newPassword) &&
       passwordRegex.test(reNewPassword) &&
       newPassword === reNewPassword
