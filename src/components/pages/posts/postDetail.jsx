@@ -12,7 +12,7 @@ function PostDetail(){
         await axios.get(`/api/v1/posts/${postId}`)
             .then((response) => {
                 console.log(response);
-                setBoard(response.data);
+                setBoard(response.data.result);
             })
             .catch((err) => {
                 console.log(err);
