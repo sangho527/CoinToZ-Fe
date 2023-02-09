@@ -177,7 +177,7 @@ const Joinform = () => {
                     type="email"
                     id="email"
                     name="email"
-                    label="이메일 주소, 현재는 @naver.com만 가능합니다."
+                    label="이메일 주소 ex) @naver.com, @gmail.com"
                     onChange={(e) => {
                       getEmail(e.target.value);
                     }}
