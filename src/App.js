@@ -22,7 +22,7 @@ import OrderBook from 'upbit-api/container/OrderBook';
 import RealTimePrice from './QuotationAPI/WEBSOCKET-example/RealTimePrice';
 import TradeHistory from './QuotationAPI/WEBSOCKET-example/TradeHistory';
 import TotalExample from './QuotationAPI/TOTAL-example/TotalExample';
-import Paymnet from './components/pages/PaymentPage/Payment';
+import Payment from './components/pages/PaymentPage/Payment';
 import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
 
@@ -45,7 +45,7 @@ function App() {
                     <Route path='/upbitMainPage' element={<UpbitMainPage/>}/>
                     <Route path='/diary' element={<Dashboard/>} />
                     <Route path='/temp' element={<NewPassword/>} />
-                    <Route path='/payment' element={<Paymnet/>} />
+                    <Route path='/payment' element={<Payment/>} />
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
                         <Route path="day-candle-data" element={<DayCandleData />} />

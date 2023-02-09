@@ -1,18 +1,69 @@
 import * as React from 'react';
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import { useRecoilState } from "recoil";
 import styles from "./Payment.css";
 import axios from "axios";
+import styled from "styled-components";
+import { useFetchMarketCode } from "use-upbit-api";
+import { marketCodesState } from "../../../QuotationAPI/TOTAL-example/atom";
+import PaymentTab from './PaymentTab';
+import CoinSelector from '../../../QuotationAPI/TOTAL-example/CoinSelector';
+import RealTimeChart from '../../../QuotationAPI/TOTAL-example/RealTimeChart';
+import CoinInfo from '../../../QuotationAPI/TOTAL-example/CoinInfo';
+import RealTimeOrderBook from '../../../QuotationAPI/TOTAL-example/RealTimeOrderBook';
+import RealTimeTradeHistory from '../../../QuotationAPI/TOTAL-example/RealTimeTradeHistory';
 
 export default function Payment(){
+    const DisplayBoard = styled.main`
+        width: 1250px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 300px 950px;
+        background-color: whitesmoke;
+
+        font-family: Arial, Helvetica, sans-serif;
+
+        *::-webkit-scrollbar,
+        *::-webkit-scrollbar-thumb {
+            width: 0px;
+        }
+
+        *::-webkit-scrollbar-thumb {
+        }
+        *:hover::-webkit-scrollbar,
+        *:hover::-webkit-scrollbar-thumb {
+            width: 26px;
+            border-radius: 13px;
+            background-clip: padding-box;
+            border: 12px solid transparent;
+            color: grey;
+        }
+
+        *:hover::-webkit-scrollbar-thumb {
+            box-shadow: inset 0 0 0 10px;
+        }
+
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        `;
+    const DetailLayout = styled.div`
+        height: 800px;
+        background-color: whitesmoke;
+        padding: 5px;
+        display: grid;
+        gap: 5px;
+        grid-template-columns: 1fr 1fr 1.1fr;
+        grid-template-rows: 105px 300px 1fr;
+        `;
 
     const [side, setSide] = useState('');
     const [ordType, setOrdType] = useState('');
     const [market, setMarket] = useState('');
     const [volume, setVolume] = useState('');
     const [price, setPrice] = useState('');
+    const { isLoading, marketCodes: fetchedMC } = useFetchMarketCode();
+    const [marketCodes, setMarketCodes] = useRecoilState(marketCodesState);
 
     const order = async () => {
-
         axios
             .get('/getMarket', {
                 // side: side,
@@ -31,67 +82,18 @@ export default function Payment(){
 
 
 return (
-    <div className={"page"}>
-        <div className={"title"}>
-            거래하기
-        </div>
-
-        <div className={"request"}>
-            <div className={"inputTitle"}>주문종류</div>
-            <div className={"inputWrap"}>
-                <input className={"input"}
-                       placeholder={"매수/매도"}
-                       value={side}
-                       onChange={(e)=>setSide(e.target.value)}
-                />
-            </div>
-
-            <div className={"inputTitle"}>주문타입</div>
-            <div className={"inputWrap"}>
-                <input className={"input"}
-                placeholder={"지정/시장/예약"}
-                value={ordType}
-                       onChange={(e)=>setOrdType(e.target.value)}
-                />
-            </div>
-
-            <div className={"inputTitle"}>코인</div>
-            <div className={"inputWrap"}>
-                <input className={"input"}
-                placeholder={"예) KRW=BTC"}
-                value={market}
-                       onChange={(e)=>setMarket(e.target.value)}
-                />
-            </div>
-
-            <div className={"inputTitle"}>수량</div>
-            <div className={"inputWrap"}>
-                <input className={"input"}
-                placeholder={"예) 1.00"}
-                value={volume}
-                       onChange={(e)=>setVolume(e.target.value)}
-                />
-            </div>
-
-            <div className={"inputTitle"}>가격</div>
-            <div className={"inputWrap"}>
-                <input className={"input"}
-                placeholder={"최소주문금액  5,000 KRW"}
-                value={price}
-                       onChange={(e)=>setPrice(e.target.value)}
-                />
-            </div>
-
-        </div>
-
-        <div>
-            <button className={"bottomButton"}
-            onClick={order}>
-                주문하기
-            </button>
-        </div>
-    </div>
-        );
+    <>
+    <DisplayBoard>
+      <CoinSelector />
+        <DetailLayout>
+            <CoinInfo />
+            <RealTimeChart />
+            <PaymentTab/>
+            <RealTimeTradeHistory />
+        </DetailLayout>
+    </DisplayBoard>
+    </>
+);
 }
 
 
