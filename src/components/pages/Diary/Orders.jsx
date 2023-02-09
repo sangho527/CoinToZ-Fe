@@ -58,14 +58,14 @@ export default function Orders() {
   function startDateFormat(date) {
     let dateFormat = date.getFullYear() +
       '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
-      '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) + 'T00:00:00'
+      '-' + ((date.getDate()) <= 9 ? "0" + (date.getDate()) : (date.getDate())) + 'T00:00:00'
     return dateFormat;
   }
 
   function endDateFormat(date) {
     let dateFormat = date.getFullYear() +
       '-' + ((date.getMonth() + 1) < 9 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)) +
-      '-' + ((date.getDate()) < 9 ? "0" + (date.getDate()) : (date.getDate())) + 'T23:59:59'
+      '-' + ((date.getDate()) <= 9 ? "0" + (date.getDate()) : (date.getDate())) + 'T23:59:59'
     return dateFormat;
   }
 
@@ -88,7 +88,6 @@ export default function Orders() {
       })
       .catch(function (err) {
         console.log(err);
-        alert("매매일지 조회 실패");
       })
   };
 
@@ -97,7 +96,7 @@ export default function Orders() {
   }, [changeComment]);
 
   const searchByDate = async () => {
-    await Api.get(`api/v1/diary/search/`,{
+    await Api.get(`api/v1/diary/search`,{
       params:{
         startDate:startDateFormat(startDate),
         endDate:endDateFormat(endDate)

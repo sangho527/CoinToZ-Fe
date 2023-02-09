@@ -2,30 +2,127 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
+import Api from '../../../functions/customApi';
 
-// Generate Sales Data
-function createData(time, amount) {
-  return { time, amount };
-}
-
-const data = [
-  createData('00:00', 0),
-  createData('03:00', 12),
-  createData('06:00', -21),
-  createData('09:00', -54),
-  createData('12:00', -55),
-  createData('15:00', -34),
-  createData('18:00', -6),
-  createData('21:00', 15),
-  createData('24:00', undefined),
-];
 
 export default function Chart() {
   const theme = useTheme();
+  const [revenue1, setRevenue1] = React.useState(0);
+  const [revenue2, setRevenue2] = React.useState(0);
+  const [revenue3, setRevenue3] = React.useState(0);
+  const [revenue4, setRevenue4] = React.useState(0);
+  const [revenue5, setRevenue5] = React.useState(0);
+  const [revenue6, setRevenue6] = React.useState(0);
+  const [revenue7, setRevenue7] = React.useState(0);
+  const [revenue8, setRevenue8] = React.useState(0);
+
+  React.useEffect(() => {
+    Api.get('api/v1/diary/revenue', {
+      params: {
+        startTime: 0,
+        endTime: 3
+      }
+    }).then(response => setRevenue1(response.data.result))
+      .catch(error => { console.log("error") })
+  }, [])
+
+  React.useEffect(() => {
+    Api.get('api/v1/diary/revenue', {
+      params: {
+        startTime: 3,
+        endTime: 6
+      }
+    }).then(response => setRevenue2(response.data.result))
+      .catch(error => { console.log("error") })
+  }, [])
+
+
+
+  React.useEffect(() => {
+    Api.get('api/v1/diary/revenue', {
+      params: {
+        startTime: 6,
+        endTime: 9
+      }
+    }).then(response => setRevenue3(response.data.result))
+      .catch(error => { console.log("error") })
+  }, [])
+
+
+  React.useEffect(() => {
+    Api.get('api/v1/diary/revenue', {
+      params: {
+        startTime: 9,
+        endTime: 12
+      }
+    }).then(response => setRevenue4(response.data.result))
+      .catch(error => { console.log("error") })
+  }, [])
+
+
+  React.useEffect(() => {
+    Api.get('api/v1/diary/revenue', {
+      params: {
+        startTime: 12,
+        endTime: 15
+      }
+    }).then(response => setRevenue5(response.data.result))
+      .catch(error => { console.log("error") })
+  }, [])
+
+
+  React.useEffect(() => {
+    Api.get('api/v1/diary/revenue', {
+      params: {
+        startTime: 15,
+        endTime: 18
+      }
+    }).then(response => setRevenue6(response.data.result))
+      .catch(error => { console.log("error") })
+  }, [])
+
+
+  React.useEffect(() => {
+    Api.get('api/v1/diary/revenue', {
+      params: {
+        startTime: 18,
+        endTime: 21
+      }
+    }).then(response => setRevenue7(response.data.result))
+      .catch(error => { console.log("error") })
+  }, [])
+
+
+  React.useEffect(() => {
+    Api.get('api/v1/diary/revenue', {
+      params: {
+        startTime: 21,
+        endTime: 24
+      }
+    }).then(response => setRevenue8(response.data.result))
+      .catch(error => { console.log("error") })
+  }, [])
+
+  // Generate Sales Data
+  function createData(time, amount) {
+    return { time, amount };
+  }
+
+  const data = [
+    createData('00:00', 0),
+    createData('03:00', revenue1),
+    createData('06:00', revenue2),
+    createData('09:00', revenue3),
+    createData('12:00', revenue4),
+    createData('15:00', revenue5),
+    createData('18:00', revenue6),
+    createData('21:00', revenue7),
+    createData('24:00', revenue8),
+  ];
 
   return (
     <React.Fragment>
-      <Title>누적 수익률</Title>
+      <Title>하루 수익률</Title>
       <ResponsiveContainer>
         <LineChart
           data={data}
@@ -54,7 +151,7 @@ export default function Chart() {
                 ...theme.typography.body1,
               }}
             >
-              수익률 (%)
+              수익률
             </Label>
           </YAxis>
           <Line
