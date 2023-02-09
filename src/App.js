@@ -24,6 +24,7 @@ import TradeHistory from './QuotationAPI/WEBSOCKET-example/TradeHistory';
 import TotalExample from './QuotationAPI/TOTAL-example/TotalExample';
 import Paymnet from './components/pages/PaymentPage/Payment';
 import TitleMenu from './components/common/TitleMenu/TitleMenu';
+import NewPassword from './components/pages/SignIn/NewPassword';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
                     <Route path='/mypage/password/modify' element={<PasswordModiftForm/>} />
                     <Route path='/upbitMainPage' element={<UpbitMainPage/>}/>
                     <Route path='/diary' element={<Dashboard/>} />
+                    <Route path='/temp' element={<NewPassword/>} />
                     <Route path='/payment' element={<Paymnet/>} />
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
