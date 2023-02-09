@@ -20,7 +20,7 @@ export default function Chart() {
     Api.get('api/v1/diary/revenue', {
       params: {
         startTime: 0,
-        endTime: 3
+        endTime: 2
       }
     }).then(response => setRevenue1(response.data.result))
       .catch(error => { console.log("error") })
@@ -30,7 +30,7 @@ export default function Chart() {
     Api.get('api/v1/diary/revenue', {
       params: {
         startTime: 3,
-        endTime: 6
+        endTime: 5
       }
     }).then(response => setRevenue2(response.data.result))
       .catch(error => { console.log("error") })
@@ -42,7 +42,7 @@ export default function Chart() {
     Api.get('api/v1/diary/revenue', {
       params: {
         startTime: 6,
-        endTime: 9
+        endTime: 8
       }
     }).then(response => setRevenue3(response.data.result))
       .catch(error => { console.log("error") })
@@ -53,7 +53,7 @@ export default function Chart() {
     Api.get('api/v1/diary/revenue', {
       params: {
         startTime: 9,
-        endTime: 12
+        endTime: 11
       }
     }).then(response => setRevenue4(response.data.result))
       .catch(error => { console.log("error") })
@@ -64,7 +64,7 @@ export default function Chart() {
     Api.get('api/v1/diary/revenue', {
       params: {
         startTime: 12,
-        endTime: 15
+        endTime: 14
       }
     }).then(response => setRevenue5(response.data.result))
       .catch(error => { console.log("error") })
@@ -75,7 +75,7 @@ export default function Chart() {
     Api.get('api/v1/diary/revenue', {
       params: {
         startTime: 15,
-        endTime: 18
+        endTime: 17
       }
     }).then(response => setRevenue6(response.data.result))
       .catch(error => { console.log("error") })
@@ -86,7 +86,7 @@ export default function Chart() {
     Api.get('api/v1/diary/revenue', {
       params: {
         startTime: 18,
-        endTime: 21
+        endTime: 20
       }
     }).then(response => setRevenue7(response.data.result))
       .catch(error => { console.log("error") })
@@ -97,7 +97,7 @@ export default function Chart() {
     Api.get('api/v1/diary/revenue', {
       params: {
         startTime: 21,
-        endTime: 24
+        endTime: 23
       }
     }).then(response => setRevenue8(response.data.result))
       .catch(error => { console.log("error") })
