@@ -60,17 +60,9 @@ export default function Payment(){
     const [market, setMarket] = useState('');
     const [volume, setVolume] = useState('');
     const [price, setPrice] = useState('');
-
     const { isLoading, marketCodes: fetchedMC } = useFetchMarketCode();
     const [marketCodes, setMarketCodes] = useRecoilState(marketCodesState);
 
-    useEffect(() => {
-        const MarketCodes_KRW = fetchedMC.filter((code) =>
-        code.market.includes("KRW")
-        );
-        setMarketCodes(MarketCodes_KRW);
-    }, [fetchedMC]);
-    
     const order = async () => {
         axios
             .get('/getMarket', {
@@ -101,7 +93,7 @@ return (
         </DetailLayout>
     </DisplayBoard>
     </>
-    );
+);
 }
 
 
