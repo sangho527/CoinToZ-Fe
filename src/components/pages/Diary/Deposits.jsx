@@ -8,25 +8,21 @@ import Api from '../../../functions/customApi';
 export default function Deposits() {
 
   const navigate = useNavigate();
-
-  const [bitCoinCnt,setBitCoinCnt] = React.useState(0);
-  const [ethereumCnt,setEthereumCnt] = React.useState(0);
-  const [rippleCnt,setRippleCnt] = React.useState(0);
-  const [ADACnt,setADACnt] = React.useState(0);
-  const [dogeCoinCnt,setDogeCoinCnt] = React.useState(0);
-  const [etcCnt,setEtcCnt] = React.useState(0);
+  let [sumEtcCnt, setSumEtcCnt] = React.useState(0);
+  const [bitCoinCnt, setBitCoinCnt] = React.useState(0);
+  const [ethereumCnt, setEthereumCnt] = React.useState(0);
+  const [rippleCnt, setRippleCnt] = React.useState(0);
+  const [ADACnt, setADACnt] = React.useState(0);
+  const [dogeCoinCnt, setDogeCoinCnt] = React.useState(0);
+  const [etcCnt, setEtcCnt] = React.useState(0);
 
 
   const getCoinCount = async () => {
-    await Api.get("/api/v1/diary/count")
+    await Api.get("/acount")
       .then(function (response) {
-        console.log(response.data.result)
-        setBitCoinCnt(response.data.result.bitCoin);
-        setEthereumCnt(response.data.result.ethereum);
-        setRippleCnt(response.data.result.ripple);
-        setADACnt(response.data.result.ada);
-        setDogeCoinCnt(response.data.result.dogeCoin);
-        setEtcCnt(response.data.result.etc);
+        console.log(response.data);
+        (response.data).map(data=>settingCnt(data));
+        setEtcCnt(sumEtcCnt);
       })
       .catch(function (err) {
         console.log(err);
@@ -36,7 +32,28 @@ export default function Deposits() {
   React.useEffect(() => {
     getCoinCount();
   }, []);
-  
+
+  function settingCnt(data) {
+    if (data.currency === "XRP" && data.unit_currency === "KRW") {
+      setRippleCnt(data.balance);
+    }
+    else if (data.currency === "BTC" && data.unit_currency === "KRW") {
+      setBitCoinCnt(data.balance);
+    }
+    else if (data.currency === "ETH" && data.unit_currency === "KRW") {
+      setEthereumCnt(data.balance);
+    }
+    else if (data.currency === "ADA" && data.unit_currency === "KRW") {
+      setADACnt(data.balance);
+    }
+    else if (data.currency === "DOGE" && data.unit_currency === "KRW") {
+      setDogeCoinCnt(data.balance);
+    }
+    else if (data.currency !== "KRW"){
+      sumEtcCnt = sumEtcCnt + data.balance;
+    }
+  }
+
 
   const data = [
     {
@@ -131,10 +148,10 @@ export default function Deposits() {
             spacing: 10
           }
         ]}
-      
+
       />
       <div>
-        <Link style={{float:'right'}} color="primary" onClick={()=>navigate('/test')}>
+        <Link style={{ float: 'right' }} color="primary" onClick={() => navigate('/test')}>
           자세히 보기
         </Link>
       </div>

@@ -7,14 +7,14 @@ import Api from '../../../functions/customApi';
 
 export default function Chart() {
   const theme = useTheme();
-  const [revenue1, setRevenue1] = React.useState(0);
-  const [revenue2, setRevenue2] = React.useState(0);
-  const [revenue3, setRevenue3] = React.useState(0);
-  const [revenue4, setRevenue4] = React.useState(0);
-  const [revenue5, setRevenue5] = React.useState(0);
-  const [revenue6, setRevenue6] = React.useState(0);
-  const [revenue7, setRevenue7] = React.useState(0);
-  const [revenue8, setRevenue8] = React.useState(0);
+  const [revenue1, setRevenue1] = React.useState(0.0);
+  const [revenue2, setRevenue2] = React.useState(0.0);
+  const [revenue3, setRevenue3] = React.useState(0.0);
+  const [revenue4, setRevenue4] = React.useState(0.0);
+  const [revenue5, setRevenue5] = React.useState(0.0);
+  const [revenue6, setRevenue6] = React.useState(0.0);
+  const [revenue7, setRevenue7] = React.useState(0.0);
+  const [revenue8, setRevenue8] = React.useState(0.0);
 
   React.useEffect(() => {
     Api.get('api/v1/diary/revenue', {
@@ -29,7 +29,7 @@ export default function Chart() {
   React.useEffect(() => {
     Api.get('api/v1/diary/revenue', {
       params: {
-        startTime: 3,
+        startTime: 0,
         endTime: 5
       }
     }).then(response => setRevenue2(response.data.result))
@@ -41,7 +41,7 @@ export default function Chart() {
   React.useEffect(() => {
     Api.get('api/v1/diary/revenue', {
       params: {
-        startTime: 6,
+        startTime: 0,
         endTime: 8
       }
     }).then(response => setRevenue3(response.data.result))
@@ -52,7 +52,7 @@ export default function Chart() {
   React.useEffect(() => {
     Api.get('api/v1/diary/revenue', {
       params: {
-        startTime: 9,
+        startTime: 0,
         endTime: 11
       }
     }).then(response => setRevenue4(response.data.result))
@@ -63,7 +63,7 @@ export default function Chart() {
   React.useEffect(() => {
     Api.get('api/v1/diary/revenue', {
       params: {
-        startTime: 12,
+        startTime: 0,
         endTime: 14
       }
     }).then(response => setRevenue5(response.data.result))
@@ -74,7 +74,7 @@ export default function Chart() {
   React.useEffect(() => {
     Api.get('api/v1/diary/revenue', {
       params: {
-        startTime: 15,
+        startTime: 0,
         endTime: 17
       }
     }).then(response => setRevenue6(response.data.result))
@@ -85,7 +85,7 @@ export default function Chart() {
   React.useEffect(() => {
     Api.get('api/v1/diary/revenue', {
       params: {
-        startTime: 18,
+        startTime: 0,
         endTime: 20
       }
     }).then(response => setRevenue7(response.data.result))
@@ -96,7 +96,7 @@ export default function Chart() {
   React.useEffect(() => {
     Api.get('api/v1/diary/revenue', {
       params: {
-        startTime: 21,
+        startTime: 0,
         endTime: 23
       }
     }).then(response => setRevenue8(response.data.result))
@@ -110,19 +110,19 @@ export default function Chart() {
 
   const data = [
     createData('00:00', 0),
-    createData('03:00', revenue1),
-    createData('06:00', revenue2),
-    createData('09:00', revenue3),
-    createData('12:00', revenue4),
-    createData('15:00', revenue5),
-    createData('18:00', revenue6),
-    createData('21:00', revenue7),
-    createData('24:00', revenue8),
+    createData('03:00', revenue1.toFixed(2)),
+    createData('06:00', revenue2.toFixed(2)),
+    createData('09:00', revenue3.toFixed(2)),
+    createData('12:00', revenue4.toFixed(2)),
+    createData('15:00', revenue5.toFixed(2)),
+    createData('18:00', revenue6.toFixed(2)),
+    createData('21:00', revenue7.toFixed(2)),
+    createData('24:00', revenue8.toFixed(2)),
   ];
 
   return (
     <React.Fragment>
-      <Title>하루 수익률</Title>
+      <Title>하루 누적 수익률</Title>
       <ResponsiveContainer>
         <LineChart
           data={data}
