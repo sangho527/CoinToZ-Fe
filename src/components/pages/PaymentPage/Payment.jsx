@@ -65,7 +65,7 @@ export default function Payment(){
 
     const order = async () => {
         axios
-            .get('/getMarket', {
+            .get('/api/v1/upbit/getMarket', {
                 // side: side,
                 // ordType: ordType,
                 // market: market,

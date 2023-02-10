@@ -18,7 +18,7 @@ export default function Deposits() {
 
 
   const getCoinCount = async () => {
-    await Api.get("/acount")
+    await Api.get("/api/v1/upbit/acount")
       .then(function (response) {
         console.log(response.data);
         (response.data).map(data=>settingCnt(data));

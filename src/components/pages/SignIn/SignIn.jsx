@@ -52,7 +52,7 @@ export default function SignIn({ location }) {
   }, []);
 
   const getInfo = async () => {
-    await Api.get("/api/v1/users/info")
+    await Api.get("/api/v1/users")
     .then(function (response) {
       console.log(response.data.result);
       localStorage.setItem("userName",response.data.result.userName);
