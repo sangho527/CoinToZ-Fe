@@ -11,19 +11,19 @@ function TempPassword(props) {
   const [code, setCode] = useState('');
   const email = props.email;
 
-  // 입력한 인증 코드 설정 함수
+
   function getCode(value) {
     setCode(value);
   }
 
-  // 인증번호 일치 한지 확인 함수
+
   const Authenticate = async () => {
-    await axios.get('/api/v1/users/temp/password', {
+    await axios.get('/api/v1/users/password', {
       params:{
         code:code,
         email:email
       }
-    }) // 수정해야 할 부분
+    }) 
       .then(function (response) {
         alert("임시비밀번호 : " + response.data.result);
         props.onHide();
