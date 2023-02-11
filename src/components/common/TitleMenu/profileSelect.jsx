@@ -31,7 +31,7 @@ export default function AccountPopover() {
   const [account, setAccount] = useState([])
 
   const getInfo = async () => {
-    await Api.get("/api/v1/users/info")
+    await Api.get("/api/v1/users")
       .then(function (response) {
         setAccount(response.data.result)
       })

@@ -84,7 +84,7 @@ const UserModifyForm = (): JSX.Element => {
     formData.append('userName', userName);
     formData.append('removeClick',removeClick);
 
-    Api.post('/api/v1/users/modify', formData)
+    Api.post('/api/v1/users', formData)
       .then(function (response) {
         alert(" 회원 정보가 수정되었습니다.\n 다시 로그인 해주세요.");
         logoutUser();
