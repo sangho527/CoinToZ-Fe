@@ -23,7 +23,7 @@ const TitleMenu = () => {
         <Nav className="me-auto">
           <Nav.Link onClick={() => { navigate('/upbitMainPage') }}>거래소</Nav.Link>
           <Nav.Link onClick={() => { navigate('/diary') }}>매매 일지</Nav.Link>
-          <Nav.Link onClick={() => { navigate('/test') }}>커뮤니티</Nav.Link>
+          <Nav.Link onClick={() => { navigate('/community') }}>커뮤니티</Nav.Link>
         </Nav>
         <Nav style={{ margin: '10px' }}>
           {user ? (
