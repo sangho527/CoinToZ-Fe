@@ -25,6 +25,7 @@ import TotalExample from './QuotationAPI/TOTAL-example/TotalExample';
 import Payment from './components/pages/PaymentPage/Payment';
 import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
+import Community from './components/pages/Community/Community';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
                     <Route path='/diary' element={<Dashboard/>} />
                     <Route path='/temp' element={<NewPassword/>} />
                     <Route path='/payment' element={<Payment/>} />
+                    <Route path='/community' element={<Community/>} />
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
                         <Route path="day-candle-data" element={<DayCandleData />} />
