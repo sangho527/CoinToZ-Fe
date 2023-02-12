@@ -26,19 +26,18 @@ const SDatePicker = styled(DatePicker)`
 export default function Orders() {
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'id', hide: true },
+    { field: 'created_at', headerName: '거래 시간', width: 125, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
     { field: 'market', headerName: '코인', width: 100, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
-    { field: 'bid_created_at', headerName: '매수 시간', width: 125, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
-    { field: 'bid_price', headerName: '매수 가격', width: 125, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
-    { field: 'ask_price', headerName: '매도 가격', width: 125, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
-    { field: 'volume', headerName: '수량', width: 100, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
-    { field: 'arbitrage', headerName: '차익', width: 100, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
-    { field: 'revenue', headerName: '수익률', width: 100, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
-    { field: 'comment', headerName: '메모(투자 계기)', width: 280, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
+    { field: 'ord_type', headerName: '거래 방식', width: 100, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
+    { field: 'side', headerName: '거래 종류', width: 100, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
+    { field: 'price', headerName: '거래 가격', width: 150, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
+    { field: 'volume', headerName: '수량', width: 150, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
+    { field: 'comment', headerName: '메모(투자 계기)', width: 300, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
     {
       field: 'actions',
       type: 'actions',
       headerName: '수정',
-      width: 50,
+      width: 75,
       headerAlign: 'center', align: 'center',
       headerClassName: 'super-app-theme--header',
       getActions: (params) => [
