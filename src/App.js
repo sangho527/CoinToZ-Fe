@@ -26,6 +26,7 @@ import Payment from './components/pages/PaymentPage/Payment';
 import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
 import Community from './components/pages/Community/Community';
+import PostWrite from './components/pages/posts/PostWrite';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
                     <Route path='/temp' element={<NewPassword/>} />
                     <Route path='/payment' element={<Payment/>} />
                     <Route path='/community' element={<Community/>} />
+                    <Route path="/post" element={<PostWrite />} />
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
                         <Route path="day-candle-data" element={<DayCandleData />} />
@@ -62,10 +64,10 @@ function App() {
                     <Route
                         path="total-example"
                         element={
-                        <RecoilRoot>
-                            <TotalExample />
-                        </RecoilRoot>}/>
-                    </Routes>
+                            <RecoilRoot>
+                                <TotalExample />
+                            </RecoilRoot>}/>
+                </Routes>
             </RecoilRoot>
         </>
     );
