@@ -50,7 +50,6 @@ export default function Chart() {
     Api.get('api/v1/upbit/revenue')
       .then(function (response) {
         setRate(rate.concat(createData(moment().format("HH:mm"), response.data.result)));
-        console.log(rate);
       })
   }, [count]);
 

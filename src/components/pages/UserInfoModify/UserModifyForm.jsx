@@ -19,26 +19,6 @@ const UserModifyForm = (): JSX.Element => {
     setUserName(e.target.value);
   };
 
-  const logoutUser = async () => {
-    await Api.get("/api/v1/users/logout")
-      .then(function (response) {
-        removeCookie('access');
-        removeCookie('refresh');
-        localStorage.removeItem('email');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('imageUrl');
-        localStorage.removeItem('createAt');
-        setUser('');
-        alert("로그아웃이 완료되었습니다.");
-        navigate('/');
-      })
-      .catch(function (err) {
-        console.log(err);
-        alert("로그아웃 실패!");
-      });
-  };
-  
-
   const changeView = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileReader = new FileReader();
 
@@ -86,8 +66,11 @@ const UserModifyForm = (): JSX.Element => {
 
     Api.post('/api/v1/users', formData)
       .then(function (response) {
-        alert(" 회원 정보가 수정되었습니다.\n 다시 로그인 해주세요.");
-        logoutUser();
+        sessionStorage.setItem("temp",sessionStorage.getItem("temp") + 1)
+        localStorage.setItem("userName",response.data.result.userName);
+        localStorage.setItem("imageUrl",response.data.result.imageUrl);
+        alert(" 회원 정보가 수정되었습니다.");
+        navigate('/mypage');
       })
       .catch(function (error) {
         alert("실패");
@@ -113,7 +96,7 @@ const UserModifyForm = (): JSX.Element => {
                     id="email"
                     name="email"
                     label="이메일"
-                    defaultValue={localStorage.getItem("email")}
+                    value={localStorage.getItem("email")}
                   />
                   <br /><br />
                   <TextField

@@ -1,13 +1,33 @@
 import styles from "./Mypage.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DeleteUser from "./DeleteUser";
+import Api from "../../../functions/customApi";
 
 const Mypage = () => {
+  const [email,setEmail] = useState('');
+  const [userName,setUserName] = useState('');
+  const [createAt,setCreateAt] = useState('');
+  const [imageUrl,setImageUrl] = useState('');
 
-  const email = localStorage.getItem('email');
-  const userName = localStorage.getItem('userName');
-  const createAt = localStorage.getItem('createAt');
-  const imageUrl = localStorage.getItem('imageUrl'); 
+
+  const getInfo = async () => {
+    await Api.get("/api/v1/users")
+      .then(function (response) {
+        console.log(response.data.result);
+        setEmail(response.data.result.email);
+        setUserName(response.data.result.userName);
+        setCreateAt(response.data.result.createAt);
+        setImageUrl(response.data.result.imageUrl);
+      })
+      .catch(function (err) {
+        console.log(err);
+        alert("유저 정보 조회 실패");
+      })
+  };
+
+  useEffect(() => {
+    getInfo();
+  }, [sessionStorage.getItem("temp")]);
 
   const [deletemodalShow, setDeleteModalShow] = useState(false);
 

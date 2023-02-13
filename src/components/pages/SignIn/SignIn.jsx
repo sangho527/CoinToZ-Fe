@@ -37,6 +37,7 @@ export default function SignIn({ location }) {
         setCookie("access", accessToken);
         setCookie("refresh", refreshToken);
         localStorage.setItem("email", email);
+        sessionStorage.setItem("temp",0);
         setUser(localStorage.getItem("email"));
         getInfo();
         alert("로그인이 완료되었습니다.");
@@ -89,6 +90,7 @@ export default function SignIn({ location }) {
         setCookie("access", response.headers.get("Authorization"));
         setCookie("refresh", response.headers.get("Authorization-refresh"));
         localStorage.setItem("email", email);
+        sessionStorage.setItem("temp",0);
         setUser(localStorage.getItem("email"));
         getInfo();
         alert("로그인이 완료되었습니다.")
