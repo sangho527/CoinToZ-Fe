@@ -89,26 +89,12 @@ export default function Board() {
     useEffect(() => {
         axios.get('api/v1/posts') 
             .then((response) => {
-                var temps = response.data.result.content;
-                setPosts(temps);
-                // temps.map((temp) => getLikes(temp));
-                // console.log(posts)
+                setPosts(response.data.result.content);
             })
             .catch(function(error){
                 console.log(error);
             })
     }, []);
-
-    // const getLikes = (post) => {
-    //     axios.get(`api/v1/posts/${post.id}/likes`) 
-    //         .then((response) => {
-    //             post.likes = response.data.result;
-    //             posts.push(post);
-    //         })
-    //         .catch(function(error){
-    //         console.log(error);
-    //         });
-    //     };
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =

@@ -2,31 +2,28 @@ import React , { useEffect, useState }from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
-import { NavLink } from 'react-router-dom';
 
-const Post = ({posts, rowsPerPage, emptyRows, page}) => {
+
+const Comment = ({comments, rowsPerPage, emptyRows, page}) => {
 
     return (
         <TableBody>
           {(rowsPerPage > 0
-            ? posts.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : posts
-          ).map((post) => (
-            <TableRow key={post.id}>
+            ? comments.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : comments
+          ).map((comment) => (
+            <TableRow key={comment.id}>
               <TableCell component="th" scope="row">
-                {post.id}
+                {comment.id}
               </TableCell>
               <TableCell style={{ width: 160 }}>
-                <NavLink to={`/postDetail/${post.id}`}>{post.title}</NavLink>
+                {comment.comment}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {post.userName}
+                {comment.userName}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {post.createdAt}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {post.likeCount}
+                {comment.createdAt}
               </TableCell>
             </TableRow>
           ))}
@@ -40,4 +37,4 @@ const Post = ({posts, rowsPerPage, emptyRows, page}) => {
     );
 };
 
-export default Post;
+export default Comment;
