@@ -38,7 +38,7 @@ const Mypage = () => {
                 </li><li>
                   <a href="/mypage/myboard">좋아요 누른 글 보기</a>
                 </li><li>
-                  <a href="/mypage/myboard">작성 댓글 보기</a>
+                  <a href="/diary">매매일지 & 포트폴리오</a>
                 </li></ul>
             </div></div><div className={styles.MemberContent}>
               <div className={styles.MemberCard}>
