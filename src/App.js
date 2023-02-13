@@ -29,6 +29,7 @@ import Community from './components/pages/Community/Community';
 import MyBoard from './components/pages/Mypage/MyBoard';
 import PostDetail from './components/pages/Community/PostDetail';
 import PostWrite from './components/pages/posts/PostWrite';
+import UpbitKey from './components/pages/Mypage/UpbitKeyForm';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
                     <Route path='/mypage/info/modify' element={<UserModifyForm />} />
                     <Route path='/mypage/password/modify' element={<PasswordModiftForm />} />
                     <Route path='/mypage/myboard' element={<MyBoard />} />
+                    <Route path='/mypage/upbitkey' element={<UpbitKey/>} />
                     <Route path='/upbitMainPage' element={<UpbitMainPage />} />
                     <Route path='/diary' element={<Dashboard />} />
                     <Route path='/temp' element={<NewPassword />} />
