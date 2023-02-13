@@ -75,6 +75,10 @@ function PostDetail(){
             <div className="bottomButtonGroup">
                 <Link className="btn btn-outline-secondary" to="/community"><ListIcon></ListIcon> 글목록</Link>
             </div>
+            <div className="commentBox">
+                <textarea className="commentInput" placeholder="댓글을 입력하세요"></textarea>
+                <button className="btn btn-primary commentButton">댓글 등록</button>
+            </div>
         </div>
 
     );
