@@ -27,6 +27,8 @@ import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
 import Community from './components/pages/Community/Community';
 import MyBoard from './components/pages/Mypage/MyBoard';
+import PostDetail from './components/pages/Community/PostDetail';
+import PostWrite from './components/pages/posts/PostWrite';
 
 function App() {
 
@@ -49,6 +51,21 @@ function App() {
                     <Route path='/temp' element={<NewPassword />} />
                     <Route path='/payment' element={<Payment />} />
                     <Route path='/community' element={<Community />} />
+                    <Route path='/' element={<Main/>}/>
+                    <Route path='/join' element={<Joinform/>}/>
+                    <Route path='/login/:accessToken?/:refreshToken?/:email?' element={<SignIn/>}/>
+                    <Route path='/test' element={<Test/>}/>
+                    <Route path='/mypage' element={<Mypage/>}/>
+                    <Route path='/mypage/password/validation' element={<PasswordValidation/>}/>
+                    <Route path='/mypage/info/modify' element={<UserModifyForm/>}/>
+                    <Route path='/mypage/password/modify' element={<PasswordModiftForm/>} />
+                    <Route path='/upbitMainPage' element={<UpbitMainPage/>}/>
+                    <Route path='/diary' element={<Dashboard/>} />
+                    <Route path='/temp' element={<NewPassword/>} />
+                    <Route path='/payment' element={<Payment/>} />
+                    <Route path='/community' element={<Community/>} />
+                    <Route path="/postDetail/:postId" element={<PostDetail />} />
+                    <Route path="/post" element={<PostWrite />} />
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
                         <Route path="day-candle-data" element={<DayCandleData />} />
