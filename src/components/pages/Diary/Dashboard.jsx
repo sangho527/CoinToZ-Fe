@@ -9,19 +9,16 @@ import Paper from '@mui/material/Paper';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-import {atom, useRecoilValue} from 'recoil';
+import { useRecoilValue} from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import {useEffect} from "react";
+import { useEffect} from "react";
+import { userState } from '../../../functions/GlobalState';
 
 
 const mdTheme = createTheme();
 
 const DashboardContent = () => {
-    const isLoggedInState = atom({
-        key: 'userState',
-        default: false,
-    });
-    const isLoggedIn = useRecoilValue(isLoggedInState);
+    const isLoggedIn = useRecoilValue(userState);
     const navigate = useNavigate();
 
     useEffect(() => {

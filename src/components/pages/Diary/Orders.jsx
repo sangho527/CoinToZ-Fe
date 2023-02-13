@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import { ko } from 'date-fns/esm/locale';
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, Table } from 'react-bootstrap';
+import DeleteModal from './DeleteModal';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const SDatePicker = styled(DatePicker)`
@@ -32,19 +34,23 @@ export default function Orders() {
     { field: 'side', headerName: '거래 종류', width: 100, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
     { field: 'price', headerName: '거래 가격', width: 150, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
     { field: 'volume', headerName: '수량', width: 150, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
-    { field: 'comment', headerName: '메모(투자 계기)', width: 300, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
+    { field: 'comment', headerName: '메모(투자 계기)', width: 268, headerAlign: 'center', align: 'center', headerClassName: 'super-app-theme--header' },
     {
       field: 'actions',
       type: 'actions',
-      headerName: '수정',
-      width: 75,
+      headerName: '수정 삭제',
+      width: 125,
       headerAlign: 'center', align: 'center',
       headerClassName: 'super-app-theme--header',
       getActions: (params) => [
         <GridActionsCellItem icon={<AutoFixHighOutlinedIcon />} onClick={(e) => {
           onButtonClick(e, params.row)
           updateHandler()
-        }} label="Update" />
+        }} label="Update" />,
+        <GridActionsCellItem icon={<DeleteIcon/>} onClick={(e)=>{
+          onButtonClick(e,params.row)
+          deleteHandler()
+        }} label="Delete" />
       ]
     }
 
@@ -52,6 +58,10 @@ export default function Orders() {
 
   function updateHandler() {
     setUpdateModalShow(true)
+  }
+
+  function deleteHandler() {
+    setDeleteModalShow(true)
   }
 
   function startDateFormat(date) {
@@ -75,6 +85,7 @@ export default function Orders() {
 
   const [diary, setDiary] = React.useState([]);
   const [updatemodalShow, setUpdateModalShow] = React.useState(false);
+  const [deletemodalShow, setDeleteModalShow] = React.useState(false);
   const [clickedRow, setClickedRow] = React.useState(0);
   const [changeComment, setChangeComment] = React.useState(0);
   const [startDate, setStartDate] = React.useState(new Date());
@@ -174,6 +185,12 @@ export default function Orders() {
         diaryid={clickedRow.id === 'undefined' ? 0 : clickedRow.id}
         show={updatemodalShow}
         onHide={() => setUpdateModalShow(false)}
+        onExit={() => setChangeComment(changeComment + 1)}
+      />
+      <DeleteModal
+        diaryid={clickedRow.id === 'undefined' ? 0 : clickedRow.id}
+        show={deletemodalShow}
+        onHide={() => setDeleteModalShow(false)}
         onExit={() => setChangeComment(changeComment + 1)}
       />
     </>

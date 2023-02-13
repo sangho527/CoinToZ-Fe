@@ -1,10 +1,10 @@
 import React from 'react';
-import {Route, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Joinform from './components/pages/Join/Joinform';
 import SignIn from './components/pages/SignIn/SignIn';
 import Main from "./components/pages/Mainpage/Mainpage";
 import Test from './components/pages/util/Test';
-import {RecoilRoot} from 'recoil';
+import { RecoilRoot } from 'recoil';
 import Mypage from './components/pages/Mypage/Mypage';
 import PasswordValidation from './components/pages/Validation/PasswordValidation';
 import UserModifyForm from './components/pages/UserInfoModify/UserModifyForm';
@@ -26,27 +26,29 @@ import Payment from './components/pages/PaymentPage/Payment';
 import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
 import Community from './components/pages/Community/Community';
+import MyBoard from './components/pages/Mypage/MyBoard';
 
 function App() {
 
     return (
         <>
             <RecoilRoot>
-                <TitleMenu/>
+                <TitleMenu />
                 <Routes>
-                    <Route path='/' element={<Main/>}/>
-                    <Route path='/join' element={<Joinform/>}/>
-                    <Route path='/login/:accessToken?/:refreshToken?/:email?' element={<SignIn/>}/>
-                    <Route path='/test' element={<Test/>}/>
-                    <Route path='/mypage' element={<Mypage/>}/>
-                    <Route path='/mypage/password/validation' element={<PasswordValidation/>}/>
-                    <Route path='/mypage/info/modify' element={<UserModifyForm/>}/>
-                    <Route path='/mypage/password/modify' element={<PasswordModiftForm/>} />
-                    <Route path='/upbitMainPage' element={<UpbitMainPage/>}/>
-                    <Route path='/diary' element={<Dashboard/>} />
-                    <Route path='/temp' element={<NewPassword/>} />
-                    <Route path='/payment' element={<Payment/>} />
-                    <Route path='/community' element={<Community/>} />
+                    <Route path='/' element={<Main />} />
+                    <Route path='/join' element={<Joinform />} />
+                    <Route path='/login/:accessToken?/:refreshToken?/:email?' element={<SignIn />} />
+                    <Route path='/test' element={<Test />} />
+                    <Route path='/mypage' element={<Mypage />} />
+                    <Route path='/mypage/password/validation' element={<PasswordValidation />} />
+                    <Route path='/mypage/info/modify' element={<UserModifyForm />} />
+                    <Route path='/mypage/password/modify' element={<PasswordModiftForm />} />
+                    <Route path='/mypage/myboard' element={<MyBoard />} />
+                    <Route path='/upbitMainPage' element={<UpbitMainPage />} />
+                    <Route path='/diary' element={<Dashboard />} />
+                    <Route path='/temp' element={<NewPassword />} />
+                    <Route path='/payment' element={<Payment />} />
+                    <Route path='/community' element={<Community />} />
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
                         <Route path="day-candle-data" element={<DayCandleData />} />
@@ -62,10 +64,10 @@ function App() {
                     <Route
                         path="total-example"
                         element={
-                        <RecoilRoot>
-                            <TotalExample />
-                        </RecoilRoot>}/>
-                    </Routes>
+                            <RecoilRoot>
+                                <TotalExample />
+                            </RecoilRoot>} />
+                </Routes>
             </RecoilRoot>
         </>
     );
