@@ -30,6 +30,8 @@ import MyBoard from './components/pages/Mypage/MyBoard';
 import PostDetail from './components/pages/Community/PostDetail';
 import PostWrite from './components/pages/posts/PostWrite';
 import UpbitKey from './components/pages/Mypage/UpbitKeyForm';
+import Wage from './components/pages/Mypage/Wage';
+import Withdraw from './components/pages/Mypage/Withdraw';
 
 function App() {
 
@@ -61,6 +63,8 @@ function App() {
                     <Route path='/mypage/password/validation' element={<PasswordValidation/>}/>
                     <Route path='/mypage/info/modify' element={<UserModifyForm/>}/>
                     <Route path='/mypage/password/modify' element={<PasswordModiftForm/>} />
+                    <Route path='/mypage/wage' element={<Wage/>} />
+                    <Route path='/mypage/withdraw' element={<Withdraw/>} />
                     <Route path='/upbitMainPage' element={<UpbitMainPage/>}/>
                     <Route path='/diary' element={<Dashboard/>} />
                     <Route path='/temp' element={<NewPassword/>} />

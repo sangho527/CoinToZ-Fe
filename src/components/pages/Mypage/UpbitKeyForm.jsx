@@ -1,5 +1,5 @@
 import styles from "./Mypage.module.css";
-import { Box,TextField,Button } from "@mui/material";
+import { Box, TextField, Button } from "@mui/material";
 import Api from "../../../functions/customApi";
 import { useNavigate } from "react-router-dom";
 
@@ -61,7 +61,12 @@ const UpbitKey = () => {
                     <a href="/mypage">회원정보 보기</a>
                   </li>
                   <li className={styles.Active}>
-                    <a href="/mypage/upbitkey">업비트 등록</a>
+                    <a href="/mypage/upbitkey">업비트 키 등록 / 수정</a>
+                  </li>
+                  <li>
+                    <a href="/mypage/wage">입금 하기</a>
+                  </li><li>
+                    <a href="/mypage/withdraw">출금 하기</a>
                   </li>
                   <li>
                     <a href="/mypage/myboard">작성 글 보기</a>
@@ -78,7 +83,7 @@ const UpbitKey = () => {
                   <h1>업비트 키 등록</h1>
                 </div>
                 <div className={styles.MemberCardBody}>
-                <Box component="form" onSubmit={onhandleSubmit} noValidate sx={{ mt: 1 }}>
+                  <Box component="form" onSubmit={onhandleSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField
                       margin="normal"
                       required
@@ -106,7 +111,7 @@ const UpbitKey = () => {
                     >
                       업비트 키 등록
                     </Button>
-                </Box>
+                  </Box>
                 </div>
               </div>
             </div>
