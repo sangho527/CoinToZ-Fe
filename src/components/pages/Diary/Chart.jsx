@@ -3,129 +3,65 @@ import { useTheme } from '@mui/material/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
 import Api from '../../../functions/customApi';
+import moment from 'moment';
+import { Button } from 'react-bootstrap';
 
 
 export default function Chart() {
+
   const theme = useTheme();
-  const [revenue1, setRevenue1] = React.useState(0.0);
-  const [revenue2, setRevenue2] = React.useState(0.0);
-  const [revenue3, setRevenue3] = React.useState(0.0);
-  const [revenue4, setRevenue4] = React.useState(0.0);
-  const [revenue5, setRevenue5] = React.useState(0.0);
-  const [revenue6, setRevenue6] = React.useState(0.0);
-  const [revenue7, setRevenue7] = React.useState(0.0);
-  const [revenue8, setRevenue8] = React.useState(0.0);
 
-  React.useEffect(() => {
-    Api.get('api/v1/diary/revenue', {
-      params: {
-        startTime: 0,
-        endTime: 2
+  const [rate, setRate] = React.useState([]);
+
+  const [count, setCount] = React.useState(0);
+
+  function useInterval(callback, delay) {
+    const savedCallback = React.useRef();
+    React.useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    React.useEffect(() => {
+      function tick() {
+        savedCallback.current();
       }
-    }).then(response => setRevenue1(response.data.result))
-      .catch(error => { console.log("error") })
-  }, [])
-
-  React.useEffect(() => {
-    Api.get('api/v1/diary/revenue', {
-      params: {
-        startTime: 0,
-        endTime: 5
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
       }
-    }).then(response => setRevenue2(response.data.result))
-      .catch(error => { console.log("error") })
-  }, [])
+    }, [delay]);
+  }
 
-
-
-  React.useEffect(() => {
-    Api.get('api/v1/diary/revenue', {
-      params: {
-        startTime: 0,
-        endTime: 8
-      }
-    }).then(response => setRevenue3(response.data.result))
-      .catch(error => { console.log("error") })
-  }, [])
-
-
-  React.useEffect(() => {
-    Api.get('api/v1/diary/revenue', {
-      params: {
-        startTime: 0,
-        endTime: 11
-      }
-    }).then(response => setRevenue4(response.data.result))
-      .catch(error => { console.log("error") })
-  }, [])
-
-
-  React.useEffect(() => {
-    Api.get('api/v1/diary/revenue', {
-      params: {
-        startTime: 0,
-        endTime: 14
-      }
-    }).then(response => setRevenue5(response.data.result))
-      .catch(error => { console.log("error") })
-  }, [])
-
-
-  React.useEffect(() => {
-    Api.get('api/v1/diary/revenue', {
-      params: {
-        startTime: 0,
-        endTime: 17
-      }
-    }).then(response => setRevenue6(response.data.result))
-      .catch(error => { console.log("error") })
-  }, [])
-
-
-  React.useEffect(() => {
-    Api.get('api/v1/diary/revenue', {
-      params: {
-        startTime: 0,
-        endTime: 20
-      }
-    }).then(response => setRevenue7(response.data.result))
-      .catch(error => { console.log("error") })
-  }, [])
-
-
-  React.useEffect(() => {
-    Api.get('api/v1/diary/revenue', {
-      params: {
-        startTime: 0,
-        endTime: 23
-      }
-    }).then(response => setRevenue8(response.data.result))
-      .catch(error => { console.log("error") })
-  }, [])
+  function Test() {
+    useInterval(() => {
+      setCount(count => count + 1);
+      console.log(count)
+    }, 60000);
+  }
 
   // Generate Sales Data
   function createData(time, amount) {
     return { time, amount };
   }
 
-  const data = [
-    createData('00:00', 0),
-    createData('03:00', revenue1.toFixed(2)),
-    createData('06:00', revenue2.toFixed(2)),
-    createData('09:00', revenue3.toFixed(2)),
-    createData('12:00', revenue4.toFixed(2)),
-    createData('15:00', revenue5.toFixed(2)),
-    createData('18:00', revenue6.toFixed(2)),
-    createData('21:00', revenue7.toFixed(2)),
-    createData('24:00', revenue8.toFixed(2)),
-  ];
+  Test();
+
+  React.useEffect(() => {
+    Api.get('api/v1/upbit/revenue')
+      .then(function (response) {
+        setRate(rate.concat(createData(moment().format("HH:mm"), response.data.result)));
+        console.log(rate);
+      })
+  }, [count]);
+
 
   return (
     <React.Fragment>
-      <Title>하루 누적 수익률</Title>
+      <Title>수익률</Title>
       <ResponsiveContainer>
+        {/* <Button onClick={window.location.reload} /> */}
         <LineChart
-          data={data}
+          data={rate}
           margin={{
             top: 16,
             right: 16,
@@ -151,7 +87,7 @@ export default function Chart() {
                 ...theme.typography.body1,
               }}
             >
-              수익률
+              수익률(%)
             </Label>
           </YAxis>
           <Line
