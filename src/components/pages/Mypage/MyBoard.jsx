@@ -145,11 +145,11 @@ const MyBoard = () => {
               </div>
             </div>  <div className={[styles.MemberCard, styles.MemberMenu].join(" ")}>
               <ul>
-                <li className={styles.Active}>
+                <li>
                   <a href="/mypage">회원정보 보기</a>
                 </li><li>
                   <a href="/mypage/upbitkey">업비트 등록</a>
-                </li><li>
+                </li><li className={styles.Active}>
                   <a href="/mypage/myboard">작성 글 보기</a>
                 </li><li>
                   <a href="/diary">매매일지 & 포트폴리오</a>
@@ -195,8 +195,6 @@ const MyBoard = () => {
                       </TableFooter>
                     </Table>
                   </TableContainer>
-
-
                 </div>
               </div>
             </div>

@@ -1,10 +1,11 @@
 import styles from "./Mypage.module.css";
 import { Box,TextField,Button } from "@mui/material";
 import Api from "../../../functions/customApi";
+import { useNavigate } from "react-router-dom";
 
 
 const UpbitKey = () => {
-
+  const navigate = useNavigate();
   const userName = localStorage.getItem('userName');
   const imageUrl = localStorage.getItem('imageUrl');
 
@@ -18,15 +19,20 @@ const UpbitKey = () => {
       secretKey: data.get('secretKey'),
     };
 
+    console.log(postData);
+
     // post
     await Api
       .post('/api/v1/users/UpbitToken', postData)
       .then(function (response) {
-        alert(response.data.result)
+        console.log(response);
+        sessionStorage.setItem("temp",sessionStorage.getItem("temp")+1);
+        alert(response.data.result);
+        navigate('/mypage');
       })
       .catch(function (err) {
-        console.log(err);
-        alert(err.response);
+        console.log(err.response);
+        alert("등록 실패!");
       });
 
 

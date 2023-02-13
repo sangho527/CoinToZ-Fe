@@ -13,10 +13,10 @@ const MENU_OPTIONS = [
     label: 'Profile',
     icon: 'eva:person-fill',
   },
-  // {
-  //   label: 'Settings',
-  //   icon: 'eva:settings-2-fill',
-  // },
+  {
+    label: 'Upbit Key Resigter',
+    icon: 'eva:settings-2-fill',
+  },
 ];
 
 // ----------------------------------------------------------------------
@@ -28,12 +28,14 @@ export default function AccountPopover() {
   const email = localStorage.getItem('email');
   const userName = localStorage.getItem('userName');
 
-  const [account, setAccount] = useState([])
+  const [account, setAccount] = useState([]);
+
 
   const getInfo = async () => {
     await Api.get("/api/v1/users")
       .then(function (response) {
-        setAccount(response.data.result)
+        console.log(response.data.result);
+        setAccount(response.data.result);
       })
       .catch(function (err) {
         console.log(err);
@@ -43,7 +45,7 @@ export default function AccountPopover() {
 
   useEffect(() => {
     getInfo();
-  }, []);
+  }, [sessionStorage.getItem("temp")]);
 
   const logoutUser = async () => {
     await Api.get("/api/v1/users/logout")
@@ -136,6 +138,14 @@ export default function AccountPopover() {
           }}>
             {MENU_OPTIONS[0].label}
           </MenuItem>
+          {account.needUpbitKey === true ? (
+            <MenuItem key={MENU_OPTIONS[1].label} onClick={() => {
+            navigate('/mypage/upbitkey')
+            handleClose()
+          }}>
+            {MENU_OPTIONS[1].label}
+          </MenuItem>
+          ) : (<></>)}
         </Stack>
 
         <Divider sx={{ borderStyle: 'dashed' }} />
