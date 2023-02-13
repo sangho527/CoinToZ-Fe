@@ -26,6 +26,7 @@ import Payment from './components/pages/PaymentPage/Payment';
 import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
 import Community from './components/pages/Community/Community';
+import PostDetail from './components/pages/Community/PostDetail';
 import PostWrite from './components/pages/posts/PostWrite';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
                     <Route path='/temp' element={<NewPassword/>} />
                     <Route path='/payment' element={<Payment/>} />
                     <Route path='/community' element={<Community/>} />
+                    <Route path="/postDetail/:postId" element={<PostDetail />} />
                     <Route path="/post" element={<PostWrite />} />
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
