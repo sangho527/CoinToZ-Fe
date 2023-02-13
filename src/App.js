@@ -25,13 +25,14 @@ import TotalExample from './QuotationAPI/TOTAL-example/TotalExample';
 import Payment from './components/pages/PaymentPage/Payment';
 import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
-import Community from './components/pages/Community/Community';
+import Board from './components/pages/Community/Board';
 import MyBoard from './components/pages/Mypage/MyBoard';
 import PostDetail from './components/pages/Community/PostDetail';
-import PostWrite from './components/pages/posts/PostWrite';
+import PostWrite from './components/pages/Community/PostWrite';
 import UpbitKey from './components/pages/Mypage/UpbitKeyForm';
 import Wage from './components/pages/Mypage/Wage';
 import Withdraw from './components/pages/Mypage/Withdraw';
+
 
 function App() {
 
@@ -54,7 +55,7 @@ function App() {
                     <Route path='/diary' element={<Dashboard />} />
                     <Route path='/temp' element={<NewPassword />} />
                     <Route path='/payment' element={<Payment />} />
-                    <Route path='/community' element={<Community />} />
+                    <Route path='/community' element={<Board />} />
                     <Route path='/' element={<Main/>}/>
                     <Route path='/join' element={<Joinform/>}/>
                     <Route path='/login/:accessToken?/:refreshToken?/:email?' element={<SignIn/>}/>
@@ -69,7 +70,6 @@ function App() {
                     <Route path='/diary' element={<Dashboard/>} />
                     <Route path='/temp' element={<NewPassword/>} />
                     <Route path='/payment' element={<Payment/>} />
-                    <Route path='/community' element={<Community/>} />
                     <Route path="/postDetail/:postId" element={<PostDetail />} />
                     <Route path="/post" element={<PostWrite />} />
                     <Route path="rest-api" element={<NavRestApi />}>

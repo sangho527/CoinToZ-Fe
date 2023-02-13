@@ -6,7 +6,23 @@ import ListIcon from '@mui/icons-material/List';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import "./PostDetail.css"
-
+import CommentList from './Comment/CommentList';
+import {
+    Avatar,
+    Button,
+    CssBaseline,
+    TextField,
+    FormControl,
+    FormControlLabel,
+    Checkbox,
+    FormHelperText,
+    Grid,
+    Box,
+    Typography,
+    Container,
+  } from '@mui/material/';
+  import styled from 'styled-components';
+  import Api from '../../../functions/customApi';
 
 
 function PostDetail(){
@@ -38,6 +54,37 @@ function PostDetail(){
             });
 
     }
+
+    const onhandlePost = async (data) => {
+        const { comment } = data;
+        const postData = { comment };
+    
+        // post
+        await Api
+          .post(`/api/v1/posts/${postId}/comments`, postData)
+          .then(()=>{
+            alert("댓글등록이 완료되었습니다.")
+            window.location.reload();
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        const data = new FormData(e.currentTarget);
+        const joinData = {
+          comment: data.get('comment'),
+        };
+        onhandlePost(joinData);
+        };
+
+        const Boxs = styled(Box)`
+  padding-bottom: 40px !important;
+`;
+
 
     useEffect(() => {
         getPostDetail();
@@ -75,10 +122,31 @@ function PostDetail(){
             <div className="bottomButtonGroup">
                 <Link className="btn btn-outline-secondary" to="/community"><ListIcon></ListIcon> 글목록</Link>
             </div>
-            <div className="commentBox">
-                <textarea className="commentInput" placeholder="댓글을 입력하세요"></textarea>
-                <button className="btn btn-primary commentButton">댓글 등록</button>
-            </div>
+            <CommentList postId={postId}></CommentList>
+            <Box>
+                <Boxs component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                <FormControl component="fieldset" variant="standard">
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                    <TextField
+                        fullWidth
+                        id="comment"
+                        name="comment"
+                        label="댓글을 입력하세요"
+                    />
+                    </Grid>
+                </Grid>
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    size="large"
+                >댓글 등록
+                </Button>
+                </FormControl>
+            </Boxs>
+          </Box>
         </div>
 
     );
