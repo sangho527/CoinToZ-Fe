@@ -112,7 +112,7 @@ const Withdraw = () => {
               <div className={styles.MemberCard}>
                 <div className={styles.MemberCardHeader}>
                   <Box>
-                    <h1 style={{ display: 'inline', marginRight: '740px' }}>원화 입금</h1>
+                    <h1 style={{ display: 'inline', marginRight: '740px' }}>원화 출금</h1>
                     <Button onClick={handleChangeCount} type="button">새로고침</Button>
                   </Box>
                 </div>
