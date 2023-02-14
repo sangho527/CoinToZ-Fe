@@ -1,12 +1,12 @@
 import React , { useEffect, useState }from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell,{ tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
@@ -18,6 +18,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Post from './Post';
+import SideMenu from '../../common/SideMenu/SideMenu';
+import { Col, Row } from 'antd';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -80,6 +82,15 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: '#8C9BC1',
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 20,
+  },
+}));
 
 export default function Board() {
   const [page, setPage] = React.useState(0);
@@ -110,39 +121,39 @@ export default function Board() {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: '80%' }} aria-label="custom pagination table">
-        <TableHead>
-            <TableRow>
-                <TableCell>No</TableCell>
-                <TableCell>제목</TableCell>
-                <TableCell align="right">글쓴이</TableCell>
-                <TableCell align="right">작성일</TableCell>
-                <TableCell align="right">좋아요</TableCell>
-            </TableRow>
-        </TableHead>
-        <Post posts={posts} rowsPerPage={rowsPerPage} emptyRows={emptyRows} page={page}></Post>
-        <TableFooter>
-          <TableRow>
+    <Row>
+      <h3 style={{marginLeft:'180px', marginTop:'20px'}}>COMMUNITY</h3>
+        <Col span={24}>
+          <Box sx={{pl : '10%', pr: '10%', pt: '10px', height : '80vh'}}>
+          <Paper sx={{ width: '100%', height:'95%' , overflow: 'hidden'}}>
+          <TableContainer  sx={{maxHeight: '100%'}}>
+            <Table sx={{ minWidth: '80%' }} stickyHeader aria-label="sticky table">
+              <TableHead>
+                  <TableRow>
+                      <StyledTableCell style={{fontSize:18}} align='center'>No</StyledTableCell>
+                      <StyledTableCell style={{fontSize:18}} align='center'>제목</StyledTableCell>
+                      <StyledTableCell style={{fontSize:18}} align='center'>글쓴이</StyledTableCell>
+                      <StyledTableCell style={{fontSize:18}} align='center'>작성일</StyledTableCell>
+                      <StyledTableCell style={{fontSize:18}} align='center'>좋아요</StyledTableCell>
+                  </TableRow>
+              </TableHead>
+              <Post posts={posts} rowsPerPage={rowsPerPage} emptyRows={emptyRows} page={page}></Post>
+            </Table>
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
+              rowsPerPageOptions={[5, 10, 25, { value: -1, label: 'All' }]}
+              component="div"
               count={posts.length}
               rowsPerPage={rowsPerPage}
               page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
               ActionsComponent={TablePaginationActions}
             />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+          </TableContainer>
+          
+          </Paper>
+          </Box>
+        </Col>
+    </Row>
   );
 }

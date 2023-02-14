@@ -40,11 +40,12 @@ const DashboardContent = () => {
                                 ? theme.palette.grey[100]
                                 : theme.palette.grey[900],
                         flexGrow: 1,
-                        height: '100vh',
-                        overflow: 'auto',
+                        height: '100%',
+                        // overflow: 'auto',
                     }}
                 >
-                    <Toolbar />
+                    <h3 style={{marginLeft:'180px', marginTop:'20px'}}>TRADING DIARY</h3>
+                    {/* <Toolbar /> */}
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={8} lg={7}>

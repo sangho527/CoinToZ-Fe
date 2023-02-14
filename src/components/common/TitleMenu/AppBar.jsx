@@ -64,7 +64,7 @@ function ResponsiveAppBar() {
                 textDecoration: 'none',
               }}
             >
-              <img style={{ display: { xs: 'none', md: 'flex' }, mr: 1, width: 70, height: 70, marginRight: 40 }} src={Logo} alt="" />
+              <img style={{ display: { xs: 'none', md: 'flex' }, width: 100, height: 90, marginRight: 40, marginTop: -6, marginBottom: -6}} src={Logo} alt="" />
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

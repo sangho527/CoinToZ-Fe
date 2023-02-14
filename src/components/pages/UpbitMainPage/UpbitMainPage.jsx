@@ -6,8 +6,8 @@ import TotalExample from '../../../QuotationAPI/TOTAL-example/TotalExample';
 function UpbitMainPage() {
     return (
         <Row>
-            <Col span={3}><SideMenu/></Col>
-            <Col style={{marginTop:'60px'}} span={21}><TotalExample /></Col>
+            <h3 style={{marginLeft:'180px', marginTop:'20px'}}>EXCHANGE</h3>
+            <Col style={{marginTop:'17px', marginBottom: '20px'}} span={24}><TotalExample /></Col>
         </Row>
     );
 
