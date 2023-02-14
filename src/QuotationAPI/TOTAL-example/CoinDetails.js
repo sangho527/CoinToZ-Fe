@@ -3,6 +3,7 @@ import RealTimeChart from "./RealTimeChart";
 import CoinInfo from "./CoinInfo";
 import RealTimeOrderBook from "./RealTimeOrderBook";
 import RealTimeTradeHistory from "./RealTimeTradeHistory";
+import PaymentTab from '../../components/pages/PaymentPage/PaymentTab';
 
 const DetailLayout = styled.div`
   height: 800px;
@@ -19,7 +20,8 @@ function CoinDetails() {
     <DetailLayout>
       <CoinInfo />
       <RealTimeChart />
-      <RealTimeOrderBook />
+      {/* <RealTimeOrderBook /> */}
+      <PaymentTab/>
       <RealTimeTradeHistory />
     </DetailLayout>
   );
