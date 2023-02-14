@@ -3,6 +3,7 @@ import { Box, TextField, Button, MenuItem } from "@mui/material";
 import Api from "../../../functions/customApi";
 import { useEffect, useState, useCallback } from "react";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useNavigate } from "react-router-dom";
 
 
 const Wage = () => {
@@ -13,6 +14,7 @@ const Wage = () => {
   const [twoMethod, setTwoMethod] = useState('2차 인증 방식');
   const [money, setMoney] = useState(0);
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
 
   function setting(data) {
     if (data.currency === "KRW") {
@@ -60,13 +62,14 @@ const Wage = () => {
       })
       .catch(function (err) {
         console.log(err);
-        alert("유저 정보 조회 실패");
+        alert("해당 서비스를 이용할려면 업비트 키를 등록해주세요");
+        navigate('/mypage/upbitKey');
       })
-  },[]);
+  }, [navigate]);
 
   useEffect(() => {
     getInfo();
-  }, [count,getInfo]);
+  }, [count, getInfo]);
 
 
   return (
@@ -123,8 +126,7 @@ const Wage = () => {
                     <li style={{ marginLeft: '5px' }}>✔ 업비트에서 계좌인증 후 사용가능합니다.</li>
                     <li style={{ marginLeft: '5px' }}>✔ 최소 5000원 부터 입금 가능합니다.</li>
                     <li style={{ marginLeft: '5px' }}>✔ 2차 인증 성공 후 입금 진행됩니다.</li>
-                    <li style={{ marginLeft: '5px' }}>✔ 해당 서비스 이용 시 수수료가 발생합니다.</li>
-                    <li style={{ marginLeft: '5px' }}>✔ 입금까지 몇분 소요됩니다.</li>
+                    <li style={{ marginLeft: '5px' }}>✔ 입금까지 약 1분 소요됩니다.</li>
                     <li style={{ marginLeft: '5px' }}>✔ 보유 금액 : {money} KRW</li>
                   </ul>
                   <Box sx={{ mt: 1 }}>
