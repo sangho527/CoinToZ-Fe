@@ -44,7 +44,7 @@ function PostDetail(){
     }
 
     const deleteBoard = async () => {
-        await axios.delete(`/api/v1/posts/${postId}`)
+        await Api.delete(`/api/v1/posts/${postId}`)
             .then((response) => {
                 navigate("/community");//게시글 목록
 
@@ -90,10 +90,19 @@ function PostDetail(){
         getPostDetail();
     }, []);
 
+    //PostUpdate.jsx에 전달
+    const postUpdate = {
+        postId : postId,
+        id : board.userName,
+        title : board.title,
+        body : board.body
+
+    }
+
     return (
         <div className="root">
             <div className="topButtonGroup">
-                <button className="btn btn-outline-secondary"><EditIcon></EditIcon>수정</button>
+                <Link className="btn btn-outline-secondary" to="/postUpdate" state={{board: postUpdate}}><EditIcon></EditIcon>수정</Link>
                 <button className="btn btn-outline-danger" onClick={deleteBoard}><DeleteIcon></DeleteIcon> 삭제</button>
             </div>
             <table className="table">

@@ -28,6 +28,7 @@ import NewPassword from './components/pages/SignIn/NewPassword';
 import Board from './components/pages/Community/Board';
 import MyBoard from './components/pages/Mypage/MyBoard';
 import PostDetail from './components/pages/Community/PostDetail';
+import PostUpdate from './components/pages/Community/PostUpdate';
 import PostWrite from './components/pages/Community/PostWrite';
 import UpbitKey from './components/pages/Mypage/UpbitKeyForm';
 import Wage from './components/pages/Mypage/Wage';
@@ -73,6 +74,7 @@ function App() {
                     <Route path='/temp' element={<NewPassword/>} />
                     <Route path='/payment' element={<Payment/>} />
                     <Route path="/postDetail/:postId" element={<PostDetail />} />
+                    <Route path="/postUpdate" element={<PostUpdate />}></Route>
                     <Route path="/post" element={<PostWrite />} />
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
