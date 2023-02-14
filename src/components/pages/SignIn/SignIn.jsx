@@ -119,7 +119,7 @@ export default function SignIn({ location }) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            로그인
           </Typography>
           <br />
           <Link href="http://ec2-52-78-23-203.ap-northeast-2.compute.amazonaws.com:8080/oauth2/authorization/kakao">
@@ -152,7 +152,7 @@ export default function SignIn({ location }) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              로그인
             </Button>
             <Grid container>
               <Grid item xs>

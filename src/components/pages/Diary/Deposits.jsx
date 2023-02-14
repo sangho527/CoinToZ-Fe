@@ -26,6 +26,8 @@ export default function Deposits() {
       })
       .catch(function (err) {
         console.log(err);
+        alert("해당 서비스를 이용할려면 업비트 키를 등록해주세요");
+        navigate('/mypage/upbitKey');
       })
   };
 
