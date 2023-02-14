@@ -8,29 +8,41 @@ import mainPageBackgroundImage from '../../../assets/mainpage/mainpage_backgroun
 function MainPage() {
 
     const styles = {
-      item_chart: {
+      main_chart: {
         backgroundColor: '#5784DB',
         color: 'white',
         height: '210px',
         '&:hover': {
           backgroundColor: '#5784DB',
+          opacity: '0.9'
+        },
+        '&:active': {
+          backgroundColor: '#5784DB',
           opacity: '0.7'
         }
       },
-      item_trade: {
+      main_trade: {
         backgroundColor: '#13358E',
         color: 'white',
         height: '100%',
         '&:hover': {
           backgroundColor: '#13358E',
+          opacity: '0.9'
+        },
+        '&:active': {
+          backgroundColor: '#13358E',
           opacity: '0.7'
         }
       },
-      item_community: {
+      main_community: {
         backgroundColor: '#41A1D8',
         color: 'white',
         height: '100%',
         '&:hover': {
+          backgroundColor: '#41A1D8',
+          opacity: '0.9'
+        },
+        '&:active': {
           backgroundColor: '#41A1D8',
           opacity: '0.7'
         }
@@ -53,7 +65,7 @@ function MainPage() {
         height: '100%',
         opacity: '0.5'
       },
-      text_on_image: {
+      main_text_on_image: {
         color: 'black',
         position: 'absolute',
         right: '10%',
@@ -75,30 +87,36 @@ function MainPage() {
             <div style={styles.main_background}>
               <div style={styles.main_background_color}/>
             </div>
-            <div style={styles.text_on_image}>
-              <h1>홈페이지 소개글입니다</h1>
-              <h3>홈페이지 소개글1</h3>
-              <h3 style={{ color : 'blue', fontWeight: 'bold'}}><a href="#">실시간 차트</a></h3>
+            <div style={styles.main_text_on_image}>
+              <h1>Z세대들을 위한 커뮤니티 기반 가상화폐 관리 서비스</h1>
+              <h4 style={{marginTop: '20px', marginBottom: '20px'}}>20~30대의 가상화폐에 대한 관심도 상승에 맞춰 자신의 거래 수익률 확인, 매매일지 작성을 통해 무지성 투자 방지 및 슬기로운 투자를 할 수 있도록 도와주는 Z세대들을 위한 맞춤형 투자관리 홈페이지입니다.</h4>
+              <h4 style={{ color : 'blue', fontWeight: 'bold'}}><a href="payment">거래 페이지 이동</a></h4>
             </div>
-            <div style={{margin: '0px'}}>
+            <div>
               <Grid container spacing={0}>
                 <Grid item xs={12} sm={6} md={4}>
-                  <Item sx={styles.item_chart}>
-                    <br></br><br></br><br></br><br></br>
-                    <h4 style={{ textAlign: 'center' }}><a href="#">실시간 차트</a></h4>
-                  </Item>
+                  <a href="upbitMainPage">
+                    <Item sx={styles.main_chart}>
+                      <br></br><br></br><br></br><br></br>
+                      <h4 style={{ textAlign: 'center' }}><a href="upbitMainPage">실시간 차트</a></h4>
+                    </Item>
+                  </a>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                  <Item sx={styles.item_trade}>
-                    <br></br><br></br><br></br><br></br>
-                    <h4 style={{ textAlign: 'center' }}><a href="#">거래하기</a></h4>
-                  </Item>
+                  <a href="payment">
+                    <Item sx={styles.main_trade}>
+                      <br></br><br></br><br></br><br></br>
+                      <h4 style={{ textAlign: 'center' }}><a href="payment">거래하기</a></h4>
+                    </Item>
+                  </a>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                  <Item sx={styles.item_community}>
-                  <br></br><br></br><br></br><br></br>
-                  <h4 style={{ textAlign: 'center' }}><a href="#">커뮤니티</a></h4>
-                  </Item>
+                  <a href="community">
+                    <Item sx={styles.main_community}>
+                      <br></br><br></br><br></br><br></br>
+                      <h4 style={{ textAlign: 'center' }}><a href="community">커뮤니티</a></h4>
+                    </Item>
+                  </a>
                 </Grid>
               </Grid>
             </div>
