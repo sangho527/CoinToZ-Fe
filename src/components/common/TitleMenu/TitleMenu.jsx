@@ -21,19 +21,19 @@ const TitleMenu = () => {
           </Nav.Link>
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link onClick={() => { navigate('/upbitMainPage') }}>거래소</Nav.Link>
-          <Nav.Link onClick={() => { navigate('/diary') }}>매매 일지</Nav.Link>
-          <Nav.Link onClick={() => { navigate('/community') }}>커뮤니티</Nav.Link>
+          <Nav.Link onClick={() => { navigate('/upbitMainPage') }}>Exchange</Nav.Link>
+          <Nav.Link onClick={() => { navigate('/diary') }}>TradingDiary</Nav.Link>
+          <Nav.Link onClick={() => { navigate('/community') }}>Community</Nav.Link>
         </Nav>
-        <Nav style={{ margin: '10px' }}>
+        <Nav style={{ margin: '10px'}}>
           {user ? (
             <>
               <AccountPopover />
             </>
           ) : (
             <>
-              <Nav.Link onClick={() => { navigate('/join') }}>회원가입</Nav.Link>
-              <Nav.Link onClick={() => { navigate('/login') }}>로그인</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/join') }}>Join</Nav.Link>
+              <Nav.Link onClick={() => { navigate('/login') }}>Login</Nav.Link>
             </>)}
         </Nav>
       </Navbar>
