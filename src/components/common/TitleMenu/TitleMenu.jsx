@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../../../functions/GlobalState';
 import AccountPopover from './profileSelect';
+import { Typography } from '@mui/material';
 
 
 const TitleMenu = () => {
@@ -15,6 +16,23 @@ const TitleMenu = () => {
   return (
     <>
       <Navbar bg="dark" variant="dark">
+      <Typography
+            variant="h6"
+            noWrap
+            component=""
+            href="/"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            LOGO
+          </Typography>
         <Navbar.Brand style={{ margin: '10px' }}>
           <Nav.Link onClick={() => { navigate('/') }}>
             CoinOne
