@@ -13,19 +13,19 @@ const Post = ({posts, rowsPerPage, emptyRows, page}) => {
             : posts
           ).map((post) => (
             <TableRow key={post.id}>
-              <TableCell component="th" scope="row">
+              <TableCell align='center' style={{ width: 80 }}>
                 {post.id}
               </TableCell>
-              <TableCell style={{ width: 160 }}>
-                <NavLink to={`/postDetail/${post.id}`}>{post.title}</NavLink>
+              <TableCell component="th" scope="row">
+                <NavLink style={{fontSize:18}} to={`/postDetail/${post.id}`}>{post.title}</NavLink>
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
+              <TableCell align='center' style={{ width: 160 }} >
                 {post.userName}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
+              <TableCell align='center' style={{ width: 160 }} >
                 {post.createdAt}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
+              <TableCell align='center' style={{ width: 120 }}>
                 {post.likeCount}
               </TableCell>
             </TableRow>
