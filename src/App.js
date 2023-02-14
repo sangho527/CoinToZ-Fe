@@ -34,6 +34,7 @@ import Wage from './components/pages/Mypage/Wage';
 import Withdraw from './components/pages/Mypage/Withdraw';
 import Information from './components/pages/UpbitKeyInformation/Information';
 import AppBar from './components/common/TitleMenu/AppBar';
+import Footer from './components/common/Footer/Footer';
 
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
                                 <TotalExample />
                             </RecoilRoot>} />
                 </Routes>
+                <Footer/>
             </RecoilRoot>
         </>
     );

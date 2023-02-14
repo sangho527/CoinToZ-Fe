@@ -1,4 +1,4 @@
-import styles from "./Mypage.module.css";
+import styles from "./Withdraw.module.css";
 import { Box, TextField, Button, Select, MenuItem } from "@mui/material";
 import Api from "../../../functions/customApi";
 import { useEffect, useState, useCallback } from "react";
