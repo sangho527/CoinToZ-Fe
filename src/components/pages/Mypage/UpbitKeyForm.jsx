@@ -26,7 +26,7 @@ const UpbitKey = () => {
       .post('/api/v1/users/UpbitToken', postData)
       .then(function (response) {
         console.log(response);
-        sessionStorage.setItem("temp",sessionStorage.getItem("temp")+1);
+        sessionStorage.setItem("temp", sessionStorage.getItem("temp") + 1);
         alert(response.data.result);
         navigate('/mypage');
       })
@@ -80,7 +80,10 @@ const UpbitKey = () => {
             <div className={styles.MemberContent}>
               <div className={styles.MemberCard}>
                 <div className={styles.MemberCardHeader}>
-                  <h1>업비트 키 등록</h1>
+                  <Box>
+                    <h1 style={{ display: 'inline', marginRight: '650px' }}>업비트 키 등록 / 수정</h1>
+                    <Button onClick={() => { navigate('/upbit/infomation') }} type="button">발급 방법</Button>
+                  </Box>
                 </div>
                 <div className={styles.MemberCardBody}>
                   <Box component="form" onSubmit={onhandleSubmit} noValidate sx={{ mt: 1 }}>

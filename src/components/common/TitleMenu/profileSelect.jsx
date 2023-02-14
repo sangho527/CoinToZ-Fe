@@ -10,12 +10,16 @@ import Api from '../../../functions/customApi';
 
 const MENU_OPTIONS = [
   {
-    label: 'Profile',
+    label: '내 정보',
     icon: 'eva:person-fill',
   },
   {
-    label: 'Upbit Key Resigter',
+    label: '업비트 키 발급 방법',
     icon: 'eva:settings-2-fill',
+  },
+  {
+    label: '업비트 키 등록',
+    icon: 'eva:settings-3-fill',
   },
 ];
 
@@ -139,12 +143,20 @@ export default function AccountPopover() {
             {MENU_OPTIONS[0].label}
           </MenuItem>
           {account.needUpbitKey === true ? (
+            <>
             <MenuItem key={MENU_OPTIONS[1].label} onClick={() => {
+              navigate('/upbit/infomation')
+              handleClose()
+            }}>
+              {MENU_OPTIONS[1].label}
+            </MenuItem>
+            <MenuItem key={MENU_OPTIONS[2].label} onClick={() => {
             navigate('/mypage/upbitkey')
             handleClose()
           }}>
-            {MENU_OPTIONS[1].label}
+            {MENU_OPTIONS[2].label}
           </MenuItem>
+          </>
           ) : (<></>)}
         </Stack>
 
@@ -154,7 +166,7 @@ export default function AccountPopover() {
           logoutUser()
           handleClose()
         }} sx={{ m: 1 }}>
-          Logout
+          로그아웃
         </MenuItem>
       </Popover>
     </>

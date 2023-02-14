@@ -54,7 +54,7 @@ const Mypage = () => {
                 <li className={styles.Active}>
                   <a href="/mypage">회원정보 보기</a>
                 </li><li>
-                  <a href="/mypage/upbitkey">업비트 등록</a>
+                  <a href="/mypage/upbitkey">업비트 키 등록 / 수정</a>
                 </li><li>
                   <a href="/mypage/wage">입금 하기</a>
                 </li><li>

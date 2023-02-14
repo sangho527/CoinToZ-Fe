@@ -2,6 +2,7 @@ import styles from "./Mypage.module.css";
 import { Box, TextField, Button, Select, MenuItem } from "@mui/material";
 import Api from "../../../functions/customApi";
 import { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const Withdraw = () => {
@@ -12,6 +13,7 @@ const Withdraw = () => {
   const [twoMethod, setTwoMethod] = useState('2차 인증 방식');
   const [money, setMoney] = useState(0);
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
 
   const handleChangeMethod = (event: SelectChangeEvent) => {
     setTwoMethod(event.target.value);
@@ -60,9 +62,10 @@ const Withdraw = () => {
       })
       .catch(function (err) {
         console.log(err);
-        alert("유저 정보 조회 실패");
+        alert("해당 서비스를 이용할려면 업비트 키를 등록해주세요");
+        navigate('/mypage/upbitKey');
       })
-  },[]);
+  },[navigate]);
 
   useEffect(() => {
     getInfo();
@@ -122,9 +125,9 @@ const Withdraw = () => {
                     <li style={{ marginLeft: '5px' }}>✔ 업비트에서 계좌인증 후 사용가능합니다.</li>
                     <li style={{ marginLeft: '5px' }}>✔ 최소 5000원 부터 출금 가능합니다.</li>
                     <li style={{ marginLeft: '5px' }}>✔ 2차 인증 성공 후 출금 진행됩니다.</li>
-                    <li style={{ marginLeft: '5px' }}>✔ 해당 서비스 이용 시 수수료가 발생합니다.</li>
-                    <li style={{ marginLeft: '5px' }}>✔ 출금까지 몇분 소요됩니다.</li>
-                    <li style={{ marginLeft: '5px' }}>✔ 출금 가능 금액 : {money} KRW</li>
+                    <li style={{ marginLeft: '5px' }}>✔ 해당 서비스 이용 시 수수료(1000 KRW)가 발생합니다.</li>
+                    <li style={{ marginLeft: '5px' }}>✔ 출금까지 약 1분 소요됩니다.</li>
+                    <li style={{ marginLeft: '5px' }}>✔ 출금 가능 금액 (수수료 적용) : {money -1000} KRW </li>
                   </ul>
                   <Box noValidate sx={{ mt: 1 }}>
                     <TextField
