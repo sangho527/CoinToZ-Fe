@@ -53,9 +53,9 @@ function MainPage() {
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        width: '99.3vw',
-        height: '89.5vh',
-        opacity: '0.3'
+        width: '100%',
+        height: '70vh',
+        opacity: '0.5'
       },
       main_background_color: {
         backgroundColor: 'blue',
@@ -70,8 +70,8 @@ function MainPage() {
         color: 'black',
         position: 'absolute',
         right: '10%',
-        left: '10%',
-        bottom: '35%'
+        left: '7%',
+        bottom: '45%'
       }
     };
 
@@ -89,11 +89,9 @@ function MainPage() {
               <div style={styles.main_background_color}/>
             </div>
             <div style={styles.main_text_on_image}>
-
               <div className="mainFont">Z세대들을 위한 커뮤니티 기반 가상화폐 관리 서비스</div>
               <div className="mainFont2">자신의 거래 수익률 확인, 매매일지 작성을 통해 슬기로운 투자를 할 수 있도록 도와주는 맞춤형 투자관리 홈페이지입니다.</div>
-              <div className="mainFont3"><a href="payment">GET STARTED NOW</a></div>
-
+              <div className="mainFont3"><a href="upbitMainPage">GET STARTED NOW</a></div>
             </div>
             <div>
               <Grid container spacing={0}>
@@ -101,15 +99,15 @@ function MainPage() {
                   <a href="upbitMainPage">
                     <Item sx={styles.main_chart}>
                       <br></br><br></br><br></br><br></br>
-                      <h4 style={{ textAlign: 'center' }}><a href="upbitMainPage">실시간 차트</a></h4>
+                      <h4 style={{ textAlign: 'center' }}><a href="upbitMainPage">거래소</a></h4>
                     </Item>
                   </a>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                  <a href="payment">
+                  <a href="diary">
                     <Item sx={styles.main_trade}>
                       <br></br><br></br><br></br><br></br>
-                      <h4 style={{ textAlign: 'center' }}><a href="payment">거래하기</a></h4>
+                      <h4 style={{ textAlign: 'center' }}><a href="diary">매매일지</a></h4>
                     </Item>
                   </a>
 
