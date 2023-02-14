@@ -5,12 +5,10 @@ import TotalExample from '../../../QuotationAPI/TOTAL-example/TotalExample';
 
 function UpbitMainPage() {
     return (
-        <>
         <Row>
             <Col span={3}><SideMenu/></Col>
-            <Col span={21}><TotalExample /></Col>
+            <Col style={{marginTop:'60px'}} span={21}><TotalExample /></Col>
         </Row>
-        </>
     );
 
 }

@@ -21,7 +21,7 @@ function EmailAuthentication(props) {
       params: {code}
     }) // 수정해야 할 부분
       .then(function (response) {
-        props.onExit(); // 이메일 체크 true로 바꾸는 함수
+        props.set(); // 이메일 체크 true로 바꾸는 함수
         alert("인증되었습니다.");
         props.onHide();
       }).catch(function (error) {

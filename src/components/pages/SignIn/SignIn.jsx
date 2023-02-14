@@ -18,6 +18,7 @@ import { useSetRecoilState } from 'recoil';
 import { userState } from '../../../functions/GlobalState';
 import queryString from 'query-string';
 import Api from "../../../functions/customApi";
+import moment from "moment";
 
 const theme = createTheme();
 
@@ -26,16 +27,19 @@ export default function SignIn({ location }) {
   const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
   const { search } = useLocation();
+  const paths = '/';
 
   useEffect(() => {
 
     const handleQuery = () => {
       const query = queryString.parse(search);
       const { accessToken, refreshToken, email } = query;
+      
 
       if (accessToken) {
-        setCookie("access", accessToken);
-        setCookie("refresh", refreshToken);
+        const expires =  moment().add('3','days').toDate()
+        setCookie("access", accessToken,{paths,expires});
+        setCookie("refresh", refreshToken,{paths,expires});
         localStorage.setItem("email", email);
         sessionStorage.setItem("temp",0);
         setUser(localStorage.getItem("email"));
@@ -87,8 +91,9 @@ export default function SignIn({ location }) {
     await axios
       .post('/api/v1/users/login', postData)
       .then(function (response) {
-        setCookie("access", response.headers.get("Authorization"));
-        setCookie("refresh", response.headers.get("Authorization-refresh"));
+        const expires =  moment().add('3','days').toDate()
+        setCookie("access", response.headers.get("Authorization"),{paths,expires});
+        setCookie("refresh", response.headers.get("Authorization-refresh"),{paths,expires});
         localStorage.setItem("email", email);
         sessionStorage.setItem("temp",0);
         setUser(localStorage.getItem("email"));
