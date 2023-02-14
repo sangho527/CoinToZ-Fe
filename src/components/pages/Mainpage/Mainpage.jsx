@@ -4,6 +4,9 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import mainPageBackgroundImage from '../../../assets/mainpage/mainpage_background_image.jpg'
 import styles from "./MainPage.css";
+import QueryStatsOutlinedIcon from '@mui/icons-material/QueryStatsOutlined';
+import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 
 
 function MainPage() {
@@ -12,7 +15,7 @@ function MainPage() {
       main_chart: {
         backgroundColor: '#5784DB',
         color: 'white',
-        height: '210px',
+        height: '200px',
         '&:hover': {
           backgroundColor: '#5784DB',
           opacity: '0.9'
@@ -54,8 +57,8 @@ function MainPage() {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         width: '99.3vw',
-        height: '89.5vh',
-        opacity: '0.3'
+        height: '68.8vh',
+        opacity: '0.4'
       },
       main_background_color: {
         backgroundColor: 'blue',
@@ -71,13 +74,13 @@ function MainPage() {
         position: 'absolute',
         right: '10%',
         left: '10%',
-        bottom: '35%'
+        bottom: '45%'
       }
     };
 
     const Item = styled(Paper)(({ theme }) => ({
       ...theme.typography.body2,
-      padding: theme.spacing(1),
+      padding: theme.spacing(0.5),
       justifyItems: 'center',
       textAlign: 'center',
       color: theme.palette.text.secondary,
@@ -100,16 +103,24 @@ function MainPage() {
                 <Grid item xs={12} sm={6} md={4}>
                   <a href="upbitMainPage">
                     <Item sx={styles.main_chart}>
-                      <br></br><br></br><br></br><br></br>
-                      <h4 style={{ textAlign: 'center' }}><a href="upbitMainPage">실시간 차트</a></h4>
+                      <div style={{marginTop: '50px'}}>
+                        <a href="upbitMainPage">
+                          <QueryStatsOutlinedIcon sx={{ fontSize: 90 }}/>
+                          <span style={{ margin: '12px', fontSize: 25 }}> 실시간 차트</span>
+                        </a>
+                      </div>
                     </Item>
                   </a>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                   <a href="payment">
                     <Item sx={styles.main_trade}>
-                      <br></br><br></br><br></br><br></br>
-                      <h4 style={{ textAlign: 'center' }}><a href="payment">거래하기</a></h4>
+                      <div style={{marginTop: '50px'}}>
+                        <a href="payment">
+                          <AddCardOutlinedIcon sx={{ fontSize: 90 }}/>
+                          <span style={{ margin: '12px', fontSize: 25 }}> 거래하기</span>
+                        </a>
+                      </div>
                     </Item>
                   </a>
 
@@ -117,8 +128,12 @@ function MainPage() {
                 <Grid item xs={12} sm={6} md={4}>
                   <a href="community">
                     <Item sx={styles.main_community}>
-                      <br></br><br></br><br></br><br></br>
-                      <h4 style={{ textAlign: 'center' }}><a href="community">커뮤니티</a></h4>
+                      <div style={{marginTop: '50px'}}>
+                        <a href="community">
+                          <ForumOutlinedIcon sx={{ fontSize: 90 }}/>
+                          <span style={{ margin: '12px', fontSize: 25 }}> 커뮤니티</span>
+                        </a>
+                      </div>
                     </Item>
                   </a>
                 </Grid>
