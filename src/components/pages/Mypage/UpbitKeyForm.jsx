@@ -1,4 +1,4 @@
-import styles from "./Mypage.module.css";
+import styles from "./UpbitKeyForm.module.css";
 import { Box, TextField, Button } from "@mui/material";
 import Api from "../../../functions/customApi";
 import { useNavigate } from "react-router-dom";
