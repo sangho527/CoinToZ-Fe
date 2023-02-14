@@ -3,9 +3,6 @@ import axios from 'axios';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import styles from "./Payment.css";
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
@@ -15,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import { Button } from '@mui/material';
 import styled from 'styled-components';
 import Api from '../../../functions/customApi';
+import styles from './PaymentTab.module.css';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -28,7 +26,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 2 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -54,8 +52,11 @@ export default function PaymentTab() {
   const [value, setValue] = React.useState(0);
   const [market, setMarket] = useState([]);
   const theme = useTheme();
+  const [account, setAccount] = useState([]);
+
 
   useEffect(() => {
+    getInfo();
     axios.get('api/v1/upbit/getMarket') 
         .then((response) => {
           console.log(response)
@@ -65,20 +66,25 @@ export default function PaymentTab() {
         .catch(function(error){
             console.log(error);
         })
-  }, []);
+  }, [sessionStorage.getItem("temp")]);
 
-  const Boxs = styled(Box)`
-  padding-bottom: 40px !important;
-`;
+  const getInfo = async () => {
+    await Api.get("/api/v1/users")
+      .then(function (response) {
+        console.log(response.data.result);
+        setAccount(response.data.result);
+      })
+      .catch(function (err) {
+        console.log(err);
+        alert("유저 정보 조회 실패");
+      })
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
+  // 매수 주문
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -97,6 +103,7 @@ export default function PaymentTab() {
     console.log(orderData);
   }
 
+  // 매도 주문 
   const handleSubmit_2 = (e) => {
     e.preventDefault();
 
@@ -115,6 +122,7 @@ export default function PaymentTab() {
     console.log(orderData);
   }
 
+  // 매수 주문 
   const onhandlePost = async (data) => {
     const { market, ord_type, price, side, volume } = data;
     const postData = { market, ord_type, price, side, volume };
@@ -125,12 +133,14 @@ export default function PaymentTab() {
             console.log("매수가 완료되었습니다" + postData);
         })
         .catch(error => {
+          console.log(error);
           const message = JSON.parse(error.response.data.split(': ')[1])[0].error['message']
           console.log(message);
           alert(message);
         });
   };
 
+  // 매도 주문
   const onhandlePost_2 = async (data) => {
     const { market, ord_type, price, side, volume } = data;
     const postData = { market, ord_type, price, side, volume };
@@ -141,14 +151,14 @@ export default function PaymentTab() {
             console.log("매도가 완료되었습니다" + postData);
         })
         .catch(error => {
+            console.log(error);
             const message = JSON.parse(error.response.data.split(': ')[1])[0].error['message']
             console.log(message);
             alert(message);
         });
   };
 
-  
-
+  // 매수 주문
   const ordType = [
     {
       value: 'limit',
@@ -159,6 +169,8 @@ export default function PaymentTab() {
       label: '시장가 주문'
     }
   ];
+
+  // 매도 주문
   const ordType_2 = [
     {
       value: 'limit',
@@ -172,151 +184,192 @@ export default function PaymentTab() {
 
 
   return (
-    <Box sx={{width: '100%'}}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="inherit"
-          variant="fullWidth"
-          aria-label="full width tabs example"
-        >
-          <Tab label="매수" {...a11yProps(0)} />
-          <Tab label="매도" {...a11yProps(1)} />
-        </Tabs>
-        <Boxs component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-        <FormControl>
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <div className={"request"}>
-              <TextField
-                id="outlined-select-currency"
-                select
-                label="order-type"
-                name="orderType"
-                defaultValue="market"
-                helperText="주문 타입을 선택해주세요."
-              >
-                {ordType.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
+    <Box sx={{width: '100%', height: '100%', backgroundColor:'#eee'}}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        textColor="inherit"
+        variant="fullWidth"
+        aria-label="full width tabs example"
+      >
+        <Tab label="매수" {...a11yProps(0)} />
+        <Tab label="매도" {...a11yProps(1)} />
+      </Tabs>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 0.5 }}>
+          <FormControl>
+            <TabPanel className={styles.tab} value={value} index={0} dir={theme.direction}>
+              <div>
+                  <TextField
+                    fullWidth
+                    id="filled-select-currency"
+                    select
+                    label="주문 종류 *"
+                    name="orderType"
+                    defaultValue=""
+                    helperText="주문 타입을 선택해주세요."
+                    variant="filled"
 
-              <TextField
-                id="outlined-select-currency"
-                select
-                label="market"
-                name="market"
-                defaultValue="KRW-BTC"
-                helperText="마켓(코인)을 선택해주세요."
-              >
-                {market.map((option) => (
-                  <MenuItem key={option.market} value={option.market}>
-                    {option.korean_name} ({option.market})
-                  </MenuItem>
-                ))}
-              </TextField>
+                  >
+                    {ordType.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
 
-              <TextField
-                id="filled-required"
-                label="주문량"
-                name="volume"
-                defaultValue=""
-                variant="filled"
-              />
+                  <TextField
+                    fullWidth
+                    id="filled-select-currency"
+                    select
+                    label="마켓 ID * "
+                    name="market"
+                    defaultValue=""
+                    helperText="마켓(코인)을 선택해주세요."
+                    variant="filled"
+                  >
+                    {market.map((option) => (
+                      <MenuItem key={option.market} value={option.market}>
+                        {option.korean_name} ({option.market})
+                      </MenuItem>
+                    ))}
+                  </TextField>
 
-              <TextField
-                required
-                id="filled-required"
-                label="주문가격"
-                name="price"
-                defaultValue="5000"
-                variant="filled"
-              />
+                  <TextField
+                    fullWidth
+                    id="filled-required"
+                    label="주문량"
+                    name="volume"
+                    defaultValue=""
+                    helperText="주문량을 입력해주세요."
+                    variant="filled"
+                  />
 
-          </div>
-          <div>
-            <Button 
-              type="submit"
-              className={"bottomButton"}>
-              매수하기
-            </Button>
-              {/* <button className={"bottomButton"}
-              onClick={post_order}>
+                  <TextField
+                    fullWidth
+                    id="filled-required"
+                    label="주문 가격 *"
+                    name="price"
+                    defaultValue=""
+                    helperText="주문 가격을 입력해주세요."
+                    variant="filled"
+                  />
+
+              </div>
+              <div>
+              {account.needUpbitKey === false ? (
+                <Button 
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  className={"bottomButton"}
+                  sx={{ mt: 2.0 }}>
                   매수하기
-              </button> */}
-          </div>
-        </TabPanel>
-        </FormControl>
-        </Boxs>
-        <Boxs component="form" noValidate onSubmit={handleSubmit_2} sx={{ mt: 3 }}>
-        <FormControl>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-        <div className={"request"}>
-              <TextField
-                id="outlined-select-currency"
-                select
-                label="order-type"
-                name="orderType"
-                defaultValue="price"
-                helperText="주문 타입을 선택해주세요."
-              >
-                {ordType_2.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-
-              <TextField
-                id="outlined-select-currency"
-                select
-                label="market"
-                name="market"
-                defaultValue="KRW-BTC"
-                helperText="마켓(코인)을 선택해주세요."
-              >
-                {market.map((option) => (
-                  <MenuItem key={option.market} value={option.market}>
-                    {option.korean_name}
-                  </MenuItem>
-                ))}
-              </TextField>
-
-              <TextField
-                id="filled-required"
-                label="주문량"
-                name="volume"
-                defaultValue=""
-                variant="filled"
-              />
-
-              <TextField
-                required
-                id="filled-required"
-                label="주문가격"
-                name="price"
-                defaultValue=""
-                variant="filled"
-              />
-
-          </div>
-          <div>
-            <Button 
-              type="submit"
-              className={"bottomButton"}>
-              매도하기
-            </Button>
-              {/* <button className={"bottomButton"}
-              onClick={post_order}>
+                </Button>
+              ) : (
+                <>
+                <Button 
+                  disabled='true'
+                  variant="contained"
+                  type="submit"
+                  size="large"
+                  className={"bottomButton"}
+                  sx={{ mt: 2.0 }}>
                   매수하기
-              </button> */}
-          </div>
-        </TabPanel>
-        </FormControl>
-        </Boxs>
-        
+                </Button>
+                <div className={styles.caption}>로그인 및 업비트 토큰 등록 후 이용할 수 있습니다.</div>
+                </>
+              )}
+              </div>
+            </TabPanel>
+          </FormControl>
+        </Box>
+        <Box component="form" noValidate onSubmit={handleSubmit_2} sx={{ mt: -2.8 }}>
+          <FormControl>
+            <TabPanel className={styles.tab} value={value} index={1} dir={theme.direction}>
+              <div>
+                <TextField
+                  fullWidth
+                  id="filled-select-currency"
+                  select
+                  label="주문 타입 * "
+                  name="orderType"
+                  defaultValue=""
+                  helperText="주문 타입을 선택해주세요."
+                  variant="filled"
+                >
+                  {ordType_2.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+
+                <TextField
+                  fullWidth
+                  id="filled-select-currency"
+                  select
+                  label="마켓 ID * "
+                  name="market"
+                  defaultValue=""
+                  helperText="마켓(코인)을 선택해주세요."
+                  variant="filled"
+                >
+                  {market.map((option) => (
+                    <MenuItem key={option.market} value={option.market}>
+                      {option.korean_name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+
+                <TextField
+                  fullWidth
+                  id="filled-required"
+                  label="주문량 * "
+                  name="volume"
+                  defaultValue=""
+                  helperText="주문량을 입력해주세요."
+                  variant="filled"
+                />
+
+                <TextField
+                  fullWidth
+                  id="filled-required"
+                  label="주문 가격"
+                  name="price"
+                  defaultValue=""
+                  helperText="주문 가격을 입력해주세요."
+                  variant="filled"
+                />
+
+              </div>
+              <div>
+                {account.needUpbitKey === false ? (
+                  <Button 
+                    variant="contained"
+                    type="submit"
+                    size="large"
+                    className={"bottomButton"}
+                    sx={{ mt: 2.0 }}>
+                    매도하기
+                  </Button>
+                ) : (
+                  <>
+                  <Button 
+                    disabled='true'
+                    variant="contained"
+                    type="submit"
+                    size="large"
+                    className={"bottomButton"}
+                    sx={{ mt: 2.0 }}>
+                    매도하기
+                  </Button>
+                  <div className={styles.caption}>로그인 및 업비트 토큰 등록 후 이용할 수 있습니다.</div>
+                  </>
+                )}
+              </div>
+            </TabPanel>
+          </FormControl>
+        </Box>    
     </Box>
   );
 }
