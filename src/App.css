@@ -4,5 +4,9 @@
 
 @font-face {
     font-family: "DoHyeon";
-    src: url("src/assets/fonts");
+    src: url("./assets/fonts/DoHyeon-Regular.ttf") format("truetype");
 }
+
+* {
+    font-family: "DoHyeon";
+  }

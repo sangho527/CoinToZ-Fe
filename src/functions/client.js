@@ -14,6 +14,8 @@ const refresh = async (config) => {
   // 토큰이 만료되었다면
   if (moment(expireAt).diff(moment()) < 0 && refreshToken) {
     console.log("토큰을 재발급합니다!");
+    const expires =  moment().add('3','days').toDate();
+    const paths = '/';
 
     //재발급 요청
     const res = await axios.get("/api/v1/users/reissuance", {
@@ -24,8 +26,8 @@ const refresh = async (config) => {
       }
     });
     console.log("재발급 성공");
-    setCookie("access", res.headers.get("Authorization"));
-    setCookie("refresh", res.headers.get("Authorization-refresh"));
+    setCookie("access", res.headers.get("Authorization"),{paths, expires});
+    setCookie("refresh", res.headers.get("Authorization-refresh"),{paths, expires});
 
     config.headers["Authorization"] = `Bearer ${getCookie("access")}`; // 토큰 교체
 

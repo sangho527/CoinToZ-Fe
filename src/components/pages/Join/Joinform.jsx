@@ -195,7 +195,7 @@ const Joinform = () => {
                   <EmailAuthentication
                       email={email}
                       show={modalShow}
-                      onExit = {() =>setEmailChecked(true)}
+                      set = {() =>setEmailChecked(true)}
                       onHide={() => setModalShow(false)}
                     />
                 </Grid>
