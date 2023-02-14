@@ -1,13 +1,10 @@
 import * as React from 'react';
 import Title from './Title';
-import Link from '@mui/material/Link';
 import { ResponsivePie } from '@nivo/pie'
-import { useNavigate } from 'react-router-dom';
 import Api from '../../../functions/customApi';
 
 export default function Deposits() {
 
-  const navigate = useNavigate();
   let [sumEtcCnt, setSumEtcCnt] = React.useState(0.0);
   const [bitCoinCnt, setBitCoinCnt] = React.useState(0.0);
   const [ethereumCnt, setEthereumCnt] = React.useState(0.0);
@@ -27,7 +24,6 @@ export default function Deposits() {
       .catch(function (err) {
         console.log(err);
         alert("해당 서비스를 이용할려면 업비트 키를 등록해주세요");
-        navigate('/mypage/upbitKey');
       })
   };
 

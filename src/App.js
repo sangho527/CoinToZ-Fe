@@ -23,7 +23,6 @@ import RealTimePrice from './QuotationAPI/WEBSOCKET-example/RealTimePrice';
 import TradeHistory from './QuotationAPI/WEBSOCKET-example/TradeHistory';
 import TotalExample from './QuotationAPI/TOTAL-example/TotalExample';
 import Payment from './components/pages/PaymentPage/Payment';
-import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
 import Board from './components/pages/Community/Board';
 import MyBoard from './components/pages/Mypage/MyBoard';
@@ -34,6 +33,7 @@ import UpbitKey from './components/pages/Mypage/UpbitKeyForm';
 import Wage from './components/pages/Mypage/Wage';
 import Withdraw from './components/pages/Mypage/Withdraw';
 import Information from './components/pages/UpbitKeyInformation/Information';
+import AppBar from './components/common/TitleMenu/AppBar';
 
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
     return (
         <>
             <RecoilRoot>
-                <TitleMenu />
+                <AppBar/>
                 <Routes>
                     <Route path='/' element={<Main />} />
                     <Route path='/join' element={<Joinform />} />
