@@ -32,8 +32,6 @@ import PostWrite from './components/pages/Community/PostWrite';
 import UpbitKey from './components/pages/Mypage/UpbitKeyForm';
 import Wage from './components/pages/Mypage/Wage';
 import Withdraw from './components/pages/Mypage/Withdraw';
-
-
 function App() {
 
     return (

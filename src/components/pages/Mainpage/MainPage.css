@@ -1,0 +1,30 @@
+
+:root {
+    --font-DoHyeon: "DoHyeon";
+}
+
+.mainFont{
+    margin-top: 87px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 700;
+    color: #262626;
+    font-font: var(--font-DoHyeon);
+}
+
+.mainFont2{
+    margin-top: 0px;
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #262626;
+}
+
+.mainFont3{
+    margin-top: 0px;
+    margin-bottom: 40px;
+    font-size: 26px;
+    font-weight: 700;
+    color:#13358E;
+
+}

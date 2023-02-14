@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import mainPageBackgroundImage from '../../../assets/mainpage/mainpage_background_image.jpg'
+import styles from "./MainPage.css";
 
 
 function MainPage() {
@@ -88,9 +89,11 @@ function MainPage() {
               <div style={styles.main_background_color}/>
             </div>
             <div style={styles.main_text_on_image}>
-              <h1>Z세대들을 위한 커뮤니티 기반 가상화폐 관리 서비스</h1>
-              <h4 style={{marginTop: '20px', marginBottom: '20px'}}>20~30대의 가상화폐에 대한 관심도 상승에 맞춰 자신의 거래 수익률 확인, 매매일지 작성을 통해 무지성 투자 방지 및 슬기로운 투자를 할 수 있도록 도와주는 Z세대들을 위한 맞춤형 투자관리 홈페이지입니다.</h4>
-              <h4 style={{ color : 'blue', fontWeight: 'bold'}}><a href="payment">거래 페이지 이동</a></h4>
+
+              <div className="mainFont">Z세대들을 위한 커뮤니티 기반 가상화폐 관리 서비스</div>
+              <div className="mainFont2">자신의 거래 수익률 확인, 매매일지 작성을 통해 슬기로운 투자를 할 수 있도록 도와주는 맞춤형 투자관리 홈페이지입니다.</div>
+              <div className="mainFont3"><a href="payment">GET STARTED NOW</a></div>
+
             </div>
             <div>
               <Grid container spacing={0}>
@@ -109,6 +112,7 @@ function MainPage() {
                       <h4 style={{ textAlign: 'center' }}><a href="payment">거래하기</a></h4>
                     </Item>
                   </a>
+
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                   <a href="community">
