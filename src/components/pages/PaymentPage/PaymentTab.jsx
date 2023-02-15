@@ -76,7 +76,6 @@ export default function PaymentTab() {
       })
       .catch(function (err) {
         console.log(err);
-        alert("유저 정보 조회 실패");
       })
   };
 
