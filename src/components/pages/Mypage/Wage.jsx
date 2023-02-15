@@ -1,4 +1,4 @@
-import styles from "./Mypage.module.css";
+import styles from "./Wage.module.css";
 import { Box, TextField, Button, MenuItem } from "@mui/material";
 import Api from "../../../functions/customApi";
 import { useEffect, useState, useCallback } from "react";

@@ -1,13 +1,14 @@
 import * as React from 'react';
 import Title from './Title';
-import Link from '@mui/material/Link';
 import { ResponsivePie } from '@nivo/pie'
-import { useNavigate } from 'react-router-dom';
 import Api from '../../../functions/customApi';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../../functions/GlobalState';
+import { useNavigate } from 'react-router-dom';
 
 export default function Deposits() {
 
-  const navigate = useNavigate();
+  const isLogin = useRecoilValue(userState);
   let [sumEtcCnt, setSumEtcCnt] = React.useState(0.0);
   const [bitCoinCnt, setBitCoinCnt] = React.useState(0.0);
   const [ethereumCnt, setEthereumCnt] = React.useState(0.0);
@@ -15,6 +16,7 @@ export default function Deposits() {
   const [ADACnt, setADACnt] = React.useState(0.0);
   const [dogeCoinCnt, setDogeCoinCnt] = React.useState(0.0);
   const [etcCnt, setEtcCnt] = React.useState(0.0);
+  const navigate = useNavigate();
 
 
   const getCoinCount = async () => {
@@ -26,8 +28,10 @@ export default function Deposits() {
       })
       .catch(function (err) {
         console.log(err);
-        alert("해당 서비스를 이용할려면 업비트 키를 등록해주세요");
-        navigate('/mypage/upbitKey');
+        alert("계좌 조회 실패 : 업비트 키를 미등록하셨거나 잘못된 키입니다.");
+        if (isLogin) {
+          navigate('/upbit/infomation');
+        }
       })
   };
 
@@ -36,19 +40,19 @@ export default function Deposits() {
   }, []);
 
   function settingCnt(data) {
-    if (data.currency === "XRP" && data.unit_currency === "KRW") {
+    if (data.currency === "XRP" && ( data.unit_currency === "KRW" || data.unit_currency === "BTC" || data.unit_currency === "USDT" )) {
       setRippleCnt(parseFloat(data.balance));
     }
-    else if (data.currency === "BTC" && data.unit_currency === "KRW") {
+    else if (data.currency === "BTC" && ( data.unit_currency === "KRW" || data.unit_currency === "BTC" || data.unit_currency === "USDT" )) {
       setBitCoinCnt(parseFloat(data.balance));
     }
-    else if (data.currency === "ETH" && data.unit_currency === "KRW") {
+    else if (data.currency === "ETH" && ( data.unit_currency === "KRW" || data.unit_currency === "BTC" || data.unit_currency === "USDT" )) {
       setEthereumCnt(parseFloat(data.balance));
     }
-    else if (data.currency === "ADA" && data.unit_currency === "KRW") {
+    else if (data.currency === "ADA" && ( data.unit_currency === "KRW" || data.unit_currency === "BTC" || data.unit_currency === "USDT" )) {
       setADACnt(parseFloat(data.balance));
     }
-    else if (data.currency === "DOGE" && data.unit_currency === "KRW") {
+    else if (data.currency === "DOGE" && ( data.unit_currency === "KRW" || data.unit_currency === "BTC" || data.unit_currency === "USDT" )) {
       setDogeCoinCnt(parseFloat(data.balance));
     }
     else if (data.currency !== "KRW"){

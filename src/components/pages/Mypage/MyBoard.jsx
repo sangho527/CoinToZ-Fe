@@ -1,4 +1,4 @@
-import styles from "./Mypage.module.css";
+import styles from "./MyBoard.module.css";
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
@@ -160,7 +160,8 @@ const MyBoard = () => {
                 </li><li>
                   <a href="/diary">매매일지 & 포트폴리오</a>
                 </li></ul>
-            </div></div><div className={styles.MemberContent}>
+            </div></div>
+            <div className={styles.MemberContent}>
               <div className={styles.MemberCard}>
                 <div className={styles.MemberCardHeader}>
                   <h1>작성한 글 목록</h1>

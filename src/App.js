@@ -23,16 +23,18 @@ import RealTimePrice from './QuotationAPI/WEBSOCKET-example/RealTimePrice';
 import TradeHistory from './QuotationAPI/WEBSOCKET-example/TradeHistory';
 import TotalExample from './QuotationAPI/TOTAL-example/TotalExample';
 import Payment from './components/pages/PaymentPage/Payment';
-import TitleMenu from './components/common/TitleMenu/TitleMenu';
 import NewPassword from './components/pages/SignIn/NewPassword';
 import Board from './components/pages/Community/Board';
 import MyBoard from './components/pages/Mypage/MyBoard';
 import PostDetail from './components/pages/Community/PostDetail';
+import PostUpdate from './components/pages/Community/PostUpdate';
 import PostWrite from './components/pages/Community/PostWrite';
 import UpbitKey from './components/pages/Mypage/UpbitKeyForm';
 import Wage from './components/pages/Mypage/Wage';
 import Withdraw from './components/pages/Mypage/Withdraw';
 import Information from './components/pages/UpbitKeyInformation/Information';
+import AppBar from './components/common/TitleMenu/AppBar';
+import Footer from './components/common/Footer/Footer';
 
 
 function App() {
@@ -40,7 +42,7 @@ function App() {
     return (
         <>
             <RecoilRoot>
-                <TitleMenu />
+                <AppBar/>
                 <Routes>
                     <Route path='/' element={<Main />} />
                     <Route path='/join' element={<Joinform />} />
@@ -52,28 +54,20 @@ function App() {
                     <Route path='/mypage/password/modify' element={<PasswordModiftForm />} />
                     <Route path='/mypage/myboard' element={<MyBoard />} />
                     <Route path='/mypage/upbitkey' element={<UpbitKey/>} />
-                    <Route path='/upbitMainPage' element={<UpbitMainPage />} />
-                    <Route path='/diary' element={<Dashboard />} />
-                    <Route path='/temp' element={<NewPassword />} />
-                    <Route path='/payment' element={<Payment />} />
-                    <Route path='/community' element={<Board />} />
-                    <Route path='/' element={<Main/>}/>
-                    <Route path='/join' element={<Joinform/>}/>
-                    <Route path='/login/:accessToken?/:refreshToken?/:email?' element={<SignIn/>}/>
-                    <Route path='/test' element={<Test/>}/>
-                    <Route path='/mypage' element={<Mypage/>}/>
-                    <Route path='/mypage/password/validation' element={<PasswordValidation/>}/>
-                    <Route path='/mypage/info/modify' element={<UserModifyForm/>}/>
-                    <Route path='/mypage/password/modify' element={<PasswordModiftForm/>} />
                     <Route path='/mypage/wage' element={<Wage/>} />
                     <Route path='/mypage/withdraw' element={<Withdraw/>} />
+                    
                     <Route path='/upbitMainPage' element={<UpbitMainPage/>}/>
                     <Route path='/upbit/infomation' element={<Information/>}/>
-                    <Route path='/diary' element={<Dashboard/>} />
-                    <Route path='/temp' element={<NewPassword/>} />
-                    <Route path='/payment' element={<Payment/>} />
+                    <Route path='/payment' element={<Payment />} />
+                    <Route path='/diary' element={<Dashboard />} />
+                    <Route path='/temp' element={<NewPassword />} />
+
+                    <Route path='/community' element={<Board />} />
                     <Route path="/postDetail/:postId" element={<PostDetail />} />
+                    <Route path="/postUpdate" element={<PostUpdate />}/>
                     <Route path="/post" element={<PostWrite />} />
+
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
                         <Route path="day-candle-data" element={<DayCandleData />} />
@@ -92,7 +86,8 @@ function App() {
                             <RecoilRoot>
                                 <TotalExample />
                             </RecoilRoot>} />
-                </Routes>
+                    </Routes>
+                <Footer/>
             </RecoilRoot>
         </>
     );

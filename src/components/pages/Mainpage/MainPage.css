@@ -1,23 +1,20 @@
 
-:root {
-    --font-DoHyeon: "DoHyeon";
-}
-
 .mainFont{
-    margin-top: 87px;
+    margin-top: 60px;
     margin-bottom: 10px;
     font-size: 30px;
     font-weight: 700;
     color: #262626;
-    font-font: var(--font-DoHyeon);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .mainFont2{
     margin-top: 0px;
     margin-bottom: 40px;
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400;
     color: #262626;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .mainFont3{
@@ -26,5 +23,5 @@
     font-size: 26px;
     font-weight: 700;
     color:#13358E;
-
+    font-family:Arial, Helvetica, sans-serif;
 }

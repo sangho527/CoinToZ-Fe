@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 .Layout {
   display: flex;
   max-width: 1366px;
@@ -105,4 +98,10 @@ figure.imageblock, #tt-body-page figure.imageblock {
 figure.imageblock.alignCenter {
   margin: 0 auto 20px;
   text-align: center;
+}
+
+.MemberContent {
+  flex: 1;
+  padding-left: 1rem;
+  padding-bottom: 28.9rem;
 }
