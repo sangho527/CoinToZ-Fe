@@ -104,7 +104,7 @@ function MainPage() {
                       <div style={{marginTop: '50px'}}>
                         <a href="upbitMainPage">
                           <QueryStatsOutlinedIcon sx={{ fontSize: 90 }}/>
-                          <span style={{ margin: '12px', fontSize: 25 }}> 실시간 차트</span>
+                          <span style={{ margin: '12px', fontSize: 25 }}> 거래소</span>
                         </a>
                       </div>
                     </Item>
@@ -114,9 +114,9 @@ function MainPage() {
                   <a href="diary">
                     <Item sx={styles.main_trade}>
                       <div style={{marginTop: '50px'}}>
-                        <a href="payment">
+                        <a href="diary">
                           <AddCardOutlinedIcon sx={{ fontSize: 90 }}/>
-                          <span style={{ margin: '12px', fontSize: 25 }}> 거래하기</span>
+                          <span style={{ margin: '12px', fontSize: 25 }}> 매매 일지</span>
                         </a>
                       </div>
                     </Item>
