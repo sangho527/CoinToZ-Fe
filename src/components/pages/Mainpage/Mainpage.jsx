@@ -13,20 +13,20 @@ function MainPage() {
 
     const styles = {
       main_chart: {
-        backgroundColor: '#5784DB',
+        backgroundColor: '#68BBF0',
         color: 'white',
         height: '200px',
         '&:hover': {
-          backgroundColor: '#5784DB',
+          backgroundColor: '#13358E',
           opacity: '0.9'
         },
         '&:active': {
-          backgroundColor: '#5784DB',
+          backgroundColor: '#13358E',
           opacity: '0.7'
         }
       },
       main_trade: {
-        backgroundColor: '#13358E',
+        backgroundColor: '#5282D9',
         color: 'white',
         height: '100%',
         '&:hover': {
@@ -39,15 +39,15 @@ function MainPage() {
         }
       },
       main_community: {
-        backgroundColor: '#41A1D8',
+        backgroundColor: '#5E6CF8',
         color: 'white',
         height: '100%',
         '&:hover': {
-          backgroundColor: '#41A1D8',
+          backgroundColor: '#13358E',
           opacity: '0.9'
         },
         '&:active': {
-          backgroundColor: '#41A1D8',
+          backgroundColor: '#13358E',
           opacity: '0.7'
         }
       },
@@ -103,8 +103,8 @@ function MainPage() {
                     <Item sx={styles.main_chart}>
                       <div style={{marginTop: '50px'}}>
                         <a href="upbitMainPage">
-                          <QueryStatsOutlinedIcon sx={{ fontSize: 90 }}/>
-                          <span style={{ margin: '12px', fontSize: 25 }}> 거래소</span>
+                          <QueryStatsOutlinedIcon sx={{ fontSize: 90, mr:3 }}/>
+                          <span style={{ margin: '12px 25px 12px 12px', fontSize: 25 }}> EXCHANGE</span>
                         </a>
                       </div>
                     </Item>
@@ -115,8 +115,8 @@ function MainPage() {
                     <Item sx={styles.main_trade}>
                       <div style={{marginTop: '50px'}}>
                         <a href="diary">
-                          <AddCardOutlinedIcon sx={{ fontSize: 90 }}/>
-                          <span style={{ margin: '12px', fontSize: 25 }}> 매매 일지</span>
+                          <AddCardOutlinedIcon sx={{ fontSize: 90, mr:3 }}/>
+                          <span style={{ margin: '12px 25px 12px 12px', fontSize: 25 }}> TRADING DIARY</span>
                         </a>
                       </div>
                     </Item>
@@ -128,8 +128,8 @@ function MainPage() {
                     <Item sx={styles.main_community}>
                       <div style={{marginTop: '50px'}}>
                         <a href="community">
-                          <ForumOutlinedIcon sx={{ fontSize: 90 }}/>
-                          <span style={{ margin: '12px', fontSize: 25 }}> 커뮤니티</span>
+                          <ForumOutlinedIcon sx={{ fontSize: 90, mr:3 }}/>
+                          <span style={{ margin: '12px 25px 12px 12px', fontSize: 25 }}> COMMUNITY</span>
                         </a>
                       </div>
                     </Item>
