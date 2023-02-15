@@ -102,7 +102,7 @@ export default function Board() {
   useEffect(() => {
       axios.get('api/v1/posts') 
         .then((response) => {
-            setPosts(response.data.result.content);
+            setPosts(response.data.result);
             console.log(posts);
         })
         .catch(function(error){
