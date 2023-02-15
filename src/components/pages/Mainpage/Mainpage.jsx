@@ -1,12 +1,17 @@
 import React from 'react';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import SendIcon from '@mui/material/Icon'
+import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid';
-import mainPageBackgroundImage from '../../../assets/mainpage/mainpage_background_image.jpg'
+//import mainPageBackgroundImage from '../../../assets/mainpage/mainpage_background_image.jpg'
+import mainPageBackgroundImage from '../../../assets/mainpage/background.jpg'
 import styles from "./MainPage.css";
 import QueryStatsOutlinedIcon from '@mui/icons-material/QueryStatsOutlined';
 import AddCardOutlinedIcon from '@mui/icons-material/AddCardOutlined';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import { useNavigate } from 'react-router-dom';
+
 
 
 function MainPage() {
@@ -58,7 +63,7 @@ function MainPage() {
         backgroundRepeat: 'no-repeat',
         width: '100%',
         height: '70vh',
-        opacity: '0.5'
+        // opacity: '0.5'
       },
       main_background_color: {
         backgroundColor: 'blue',
@@ -86,15 +91,24 @@ function MainPage() {
       color: theme.palette.text.secondary,
     }));
 
+  const navigate = useNavigate();
+
+  const clickToMainPage = () => {
+    navigate('/upbitMainPage')
+  }
+
     return (
         <>
             <div style={styles.main_background}>
               <div style={styles.main_background_color}/>
             </div>
             <div style={styles.main_text_on_image}>
-              <div className="mainFont">Z세대들을 위한 커뮤니티 기반 가상화폐 관리 서비스</div>
-              <div className="mainFont2">자신의 거래 수익률 확인, 매매일지 작성을 통해 슬기로운 투자를 할 수 있도록 도와주는 맞춤형 투자관리 홈페이지입니다.</div>
-              <div className="mainFont3"><a href="upbitMainPage">GET STARTED NOW</a></div>
+              <div className="mainFont">Z세대들을 위한 커뮤니티 기반 가상화폐 관리 서비스</div><br/>
+              <div className="mainFont2"><p id="ImageLetter">투자자의 거래 수익률 확인, 매매일지 작성을 통해 슬기로운 투자를 할 수 있도록 <br/> 도와주는 맞춤형 투자관리 홈페이지입니다.</p></div>
+              <div className="mainFont3">
+                <button className="btn-hover color-3" onClick={clickToMainPage}>
+                  거래소 바로가기
+                </button></div>
             </div>
             <div>
               <Grid container spacing={0}>
