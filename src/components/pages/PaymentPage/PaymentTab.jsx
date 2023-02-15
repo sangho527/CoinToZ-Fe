@@ -205,7 +205,7 @@ export default function PaymentTab() {
                     label="주문 종류 *"
                     name="orderType"
                     defaultValue=""
-                    helperText="주문 타입을 선택해주세요."
+                    helperText="주문 종류를 선택해주세요."
                     variant="filled"
 
                   >
@@ -246,10 +246,10 @@ export default function PaymentTab() {
                   <TextField
                     fullWidth
                     id="filled-required"
-                    label="주문 가격 *"
+                    label="주문 가격 * "
                     name="price"
                     defaultValue=""
-                    helperText="주문 가격을 입력해주세요."
+                    helperText="주문 가격을 입력해주세요. "
                     variant="filled"
                   />
 
@@ -290,10 +290,10 @@ export default function PaymentTab() {
                   fullWidth
                   id="filled-select-currency"
                   select
-                  label="주문 타입 * "
+                  label="주문 종류 * "
                   name="orderType"
                   defaultValue=""
-                  helperText="주문 타입을 선택해주세요."
+                  helperText="주문 종류를 선택해주세요."
                   variant="filled"
                 >
                   {ordType_2.map((option) => (
@@ -315,7 +315,7 @@ export default function PaymentTab() {
                 >
                   {market.map((option) => (
                     <MenuItem key={option.market} value={option.market}>
-                      {option.korean_name}
+                      {option.korean_name} ({option.market})
                     </MenuItem>
                   ))}
                 </TextField>

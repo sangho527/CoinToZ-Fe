@@ -36,7 +36,7 @@ export default function Chart() {
     useInterval(() => {
       setCount(count => count + 1);
       console.log(count)
-    }, 60000);
+    }, 500);
   }
 
   // Generate Sales Data

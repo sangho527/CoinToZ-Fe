@@ -44,6 +44,7 @@ function PostUpdate(){
     return (
 
         <div className="root">
+            <h3>게시글 수정</h3>
             <table className="table">
                 <tbody>
                 <tr className="table-striped">
