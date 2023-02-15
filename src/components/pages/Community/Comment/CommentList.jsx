@@ -79,15 +79,15 @@ export default function CommentList({postId}) {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [comments, setComments] = useState([]);
 
-    useEffect(() => {
-        axios.get(`/api/v1/posts/${postId}/comments`) 
-            .then((response) => {
-                setComments(response.data.result.content);
-            })
-            .catch(function(error){
-                console.log(error);
-            })
-    }, []);
+  useEffect(() => {
+      axios.get(`/api/v1/posts/${postId}/comments`) 
+          .then((response) => {
+              setComments(response.data.result.content);
+          })
+          .catch(function(error){
+              console.log(error);
+          })
+  }, []);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -103,30 +103,32 @@ export default function CommentList({postId}) {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: '80%' }} aria-label="custom pagination table">
-        <Comment comments={comments} rowsPerPage={rowsPerPage} emptyRows={emptyRows} page={page}></Comment>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={comments.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+    <Paper sx={{ width: '100%', overflow: 'hidden'}}>
+      <TableContainer >
+        <Table sx={{ minWidth: '80%'}}>
+          <Comment comments={comments} rowsPerPage={rowsPerPage} emptyRows={emptyRows} page={page}></Comment>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={comments.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </TableContainer>
+    </Paper>
   );
 }

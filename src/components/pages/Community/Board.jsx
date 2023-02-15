@@ -2,6 +2,8 @@ import React , { useEffect, useState }from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useTheme, styled } from '@mui/material/styles';
+import { Link } from "react-router-dom";
+import CreateIcon from '@mui/icons-material/Create';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -97,15 +99,16 @@ export default function Board() {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-        axios.get('api/v1/posts') 
-            .then((response) => {
-                setPosts(response.data.result.content);
-            })
-            .catch(function(error){
-                console.log(error);
-            })
-    }, []);
+  useEffect(() => {
+      axios.get('api/v1/posts') 
+        .then((response) => {
+            setPosts(response.data.result.content);
+            console.log(posts);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+  }, []);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -122,11 +125,12 @@ export default function Board() {
 
   return (
     <Row>
-      <h3 style={{marginLeft:'180px', marginTop:'20px'}}>COMMUNITY</h3>
+      <Col span={19}><h3 style={{marginLeft:'180px', marginTop:'20px'}}>COMMUNITY</h3></Col>
+      <Col span={5}><Link style={{marginTop:'20px'}} className="btn btn-outline-primary" to="/post"><CreateIcon></CreateIcon> 글 작성</Link></Col>
         <Col span={24}>
-          <Box sx={{pl : '10%', pr: '10%', pt: '10px', height : '80vh'}}>
-          <Paper sx={{ width: '100%', height:'95%' , overflow: 'hidden'}}>
-          <TableContainer  sx={{maxHeight: '100%'}}>
+          <Box sx={{pl : '12%', pr: '12%', pt: '15px', height : '80vh'}}>
+          <Paper sx={{ width: '100%', height:'90%' , overflow: 'hidden'}}>
+          <TableContainer sx={{maxHeight: '100%'}}>
             <Table sx={{ minWidth: '80%' }} stickyHeader aria-label="sticky table">
               <TableHead>
                   <TableRow>
@@ -150,7 +154,6 @@ export default function Board() {
               ActionsComponent={TablePaginationActions}
             />
           </TableContainer>
-          
           </Paper>
           </Box>
         </Col>
