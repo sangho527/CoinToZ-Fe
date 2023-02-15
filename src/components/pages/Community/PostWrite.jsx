@@ -75,12 +75,10 @@ const PostWrite = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Typography component="h1" variant="h5" >
-                        게시글 작성
-                    </Typography>
-                    <Boxs component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                    <h3>게시글 작성</h3>
+                    <Boxs component="form" noValidate onSubmit={handleSubmit} >
                         <FormControl component="fieldset" variant="standard">
-                            <Grid container spacing={2} justifyContent="center" marginBottom={3}>
+                            <Grid container justifyContent="center" marginBottom={3}>
                                 <TextField fullWidth  margin="normal"
                                     id="title"
                                     name='title'
@@ -97,8 +95,8 @@ const PostWrite = () => {
                                     rows={10}
                                     required
                                 />
-                                <Button type="submit" variant="contained" color="primary" >
-                                    등록
+                                <Button type="submit" variant="contained" color="primary" sx={{mt:2}}>
+                                    등록하기
                                 </Button>
                             </Grid>
                         </FormControl>

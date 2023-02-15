@@ -137,7 +137,7 @@ export default function SignIn({ location }) {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="이메일 주소"
               name="email"
               autoComplete="email"
               autoFocus
@@ -147,7 +147,7 @@ export default function SignIn({ location }) {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="비밀번호"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -163,12 +163,12 @@ export default function SignIn({ location }) {
             <Grid container>
               <Grid item xs>
                 <Link href="/temp" variant="body2">
-                  Forgot password?
+                  비밀번호를 잊으셨나요?
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/join" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"회원가입 하러 가기"}
                 </Link>
               </Grid>
             </Grid>

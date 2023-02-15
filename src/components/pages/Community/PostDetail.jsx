@@ -4,6 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ListIcon from '@mui/icons-material/List';
 import DeleteIcon from '@mui/icons-material/Delete';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import EditIcon from '@mui/icons-material/Edit';
 import "./PostDetail.css"
 import CommentList from './Comment/CommentList';
@@ -29,14 +31,16 @@ import {
 function PostDetail(){
 
     const [board, setBoard] = useState({});
+    const userName = localStorage.getItem('userName');
     const { postId } = useParams();
     const navigate = useNavigate();
 
     const getPostDetail = async () => {
         await axios.get(`/api/v1/posts/${postId}`)
             .then((response) => {
-                console.log(response);
                 setBoard(response.data.result);
+                console.log(userName);
+                console.log(board);
             })
             .catch((err) => {
                 console.log(err);
@@ -54,7 +58,19 @@ function PostDetail(){
                 console.log(err);
                 alert("본인이 작성한 글만 삭제할 수 있습니다.")
             });
+    }
 
+    const likePost = async () => {
+        await Api.post(`/api/v1/posts/${postId}/likes`, postId)
+            .then((response) => {
+                console.log(response);
+                alert("게시글에 좋아요를 눌렀습니다!");
+            }).catch((err) => {
+                console.log(err);
+                if (err.response.data.result.errorCode == 'DUPLICATED_LIKE_COUNT'){
+                    alert("이미 좋아요를 누른 게시글 입니다!");
+                }
+            });
     }
 
     const onhandlePost = async (data) => {
@@ -65,7 +81,7 @@ function PostDetail(){
         await Api
         .post(`/api/v1/posts/${postId}/comments`, postData)
         .then(()=>{
-            alert("댓글등록이 완료되었습니다.")
+            alert("댓글 등록이 완료되었습니다.")
             window.location.reload();
         })
         .catch(function (err) {
@@ -94,7 +110,6 @@ function PostDetail(){
         id : board.userName,
         title : board.title,
         body : board.body
-
     }
 
     return (
@@ -104,13 +119,20 @@ function PostDetail(){
             <div style={{float:'left'}}>
                 <Link className="btn btn-outline-dark" to="/community"><ListIcon></ListIcon> 글 목록</Link>
             </div>
+            
             <div className="topButtonGroup">
-                <Link className="btn btn-outline-primary" to="/postUpdate" state={{board: postUpdate}}><EditIcon></EditIcon> 수정</Link>
-                <button className="btn btn-outline-danger" onClick={deleteBoard}><DeleteIcon></DeleteIcon> 삭제</button>
+            <button className='btn btn-outline-dark' onClick={likePost}><FavoriteIcon/>좋아요</button>
+                {(userName == board.userName) ? (<>
+                    <Link className="btn btn-outline-primary" to="/postUpdate" state={{board: postUpdate}}><EditIcon></EditIcon> 수정</Link>
+                    <button className="btn btn-outline-danger" onClick={deleteBoard}><DeleteIcon></DeleteIcon> 삭제</button></>
+                ):(<>
+                    <Link className="btn btn-outline-secondary" style={{pointerEvents: 'none'}} disabled><EditIcon></EditIcon> 수정</Link>
+                    <button className="btn btn-outline-secondary" disabled><DeleteIcon></DeleteIcon> 삭제</button>
+                </>)}    
             </div>
             
             <div className="details">
-                <Row>
+                <Row>   
                     <Col span={4} className="th">작성자</Col>
                     <Col span={8} className="td" >{board.userName}</Col>
                 

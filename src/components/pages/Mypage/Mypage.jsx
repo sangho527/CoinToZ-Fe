@@ -56,9 +56,9 @@ const Mypage = () => {
                 </li><li>
                   <a href="/mypage/upbitkey">업비트 키 등록 / 수정</a>
                 </li><li>
-                  <a href="/mypage/wage">입금 하기</a>
+                  <a href="/mypage/wage">충전 하기</a>
                 </li><li>
-                  <a href="/mypage/withdraw">출금 하기</a>
+                  <a href="/mypage/withdraw">송금 하기</a>
                 </li><li>
                   <a href="/mypage/myboard">작성 글 보기</a>
                 </li><li>
