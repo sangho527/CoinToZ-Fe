@@ -54,29 +54,20 @@ function App() {
                     <Route path='/mypage/password/modify' element={<PasswordModiftForm />} />
                     <Route path='/mypage/myboard' element={<MyBoard />} />
                     <Route path='/mypage/upbitkey' element={<UpbitKey/>} />
-                    <Route path='/upbitMainPage' element={<UpbitMainPage />} />
-                    <Route path='/diary' element={<Dashboard />} />
-                    <Route path='/temp' element={<NewPassword />} />
-                    <Route path='/payment' element={<Payment />} />
-                    <Route path='/community' element={<Board />} />
-                    <Route path='/' element={<Main/>}/>
-                    <Route path='/join' element={<Joinform/>}/>
-                    <Route path='/login/:accessToken?/:refreshToken?/:email?' element={<SignIn/>}/>
-                    <Route path='/test' element={<Test/>}/>
-                    <Route path='/mypage' element={<Mypage/>}/>
-                    <Route path='/mypage/password/validation' element={<PasswordValidation/>}/>
-                    <Route path='/mypage/info/modify' element={<UserModifyForm/>}/>
-                    <Route path='/mypage/password/modify' element={<PasswordModiftForm/>} />
                     <Route path='/mypage/wage' element={<Wage/>} />
                     <Route path='/mypage/withdraw' element={<Withdraw/>} />
+                    
                     <Route path='/upbitMainPage' element={<UpbitMainPage/>}/>
                     <Route path='/upbit/infomation' element={<Information/>}/>
-                    <Route path='/diary' element={<Dashboard/>} />
-                    <Route path='/temp' element={<NewPassword/>} />
-                    <Route path='/payment' element={<Payment/>} />
+                    <Route path='/payment' element={<Payment />} />
+                    <Route path='/diary' element={<Dashboard />} />
+                    <Route path='/temp' element={<NewPassword />} />
+
+                    <Route path='/community' element={<Board />} />
                     <Route path="/postDetail/:postId" element={<PostDetail />} />
-                    <Route path="/postUpdate" element={<PostUpdate />}></Route>
+                    <Route path="/postUpdate" element={<PostUpdate />}/>
                     <Route path="/post" element={<PostWrite />} />
+
                     <Route path="rest-api" element={<NavRestApi />}>
                         <Route path="marketcode" element={<MarketCode />} />
                         <Route path="day-candle-data" element={<DayCandleData />} />
@@ -95,7 +86,7 @@ function App() {
                             <RecoilRoot>
                                 <TotalExample />
                             </RecoilRoot>} />
-                </Routes>
+                    </Routes>
                 <Footer/>
             </RecoilRoot>
         </>

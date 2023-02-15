@@ -25,9 +25,13 @@ const Post = ({posts, rowsPerPage, emptyRows, page}) => {
               <TableCell align='center' style={{ width: 160 }} >
                 {post.createdAt}
               </TableCell>
-              <TableCell align='center' style={{ width: 120 }}>
+              {(!post.likeCount ? (
+                <TableCell align='center' style={{ width: 120 }}>
                 {post.likeCount}
               </TableCell>
+              ):(<TableCell align='center' style={{ width: 120 }}>
+                0
+              </TableCell>))}
             </TableRow>
           ))}
 

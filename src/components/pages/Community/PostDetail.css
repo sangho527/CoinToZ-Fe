@@ -1,31 +1,35 @@
 
 .root {
-    margin-top: 80px;
+    margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
     width: 70%;
 }
 
-.table {
-    border-collapse: collapse;
+.details {
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0px 2px 2px 1px #e2e2e2;
 }
-
-.table-striped {
-    background-color: #e9eaea;
-}
-
 
 .th {
-    width:20%;
-    padding:10px;
-
+    text-align: center;
+    padding-block: 1%;
+    border-radius: 5px;
+    background-color: #dedede;
+    border: 1px solid #cdcdcd;
+    font-weight: bold;
+    align-items: center;
 }
 
 .td {
-    width: 80%;
     word-break: break-all;
     padding:10px;
-
+    border-radius: 8px;
+    border: 1px solid #dcdcdc;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .topButtonGroup {

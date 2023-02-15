@@ -13,16 +13,13 @@ const Comment = ({comments, rowsPerPage, emptyRows, page}) => {
             : comments
           ).map((comment) => (
             <TableRow key={comment.id}>
-              <TableCell component="th" scope="row">
-                {comment.id}
-              </TableCell>
-              <TableCell style={{ width: 160 }}>
-                {comment.comment}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
+              <TableCell style={{ width: 180, fontWeight:'bold', textAlign: 'center', backgroundColor: '#e2e2e2'}} align="left">
                 {comment.userName}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
+              <TableCell component="th" scope="row" >
+                {comment.comment}
+              </TableCell>
+              <TableCell style={{ width: 200, fontFamily : 'monospace'}} align="right">
                 {comment.createdAt}
               </TableCell>
             </TableRow>
